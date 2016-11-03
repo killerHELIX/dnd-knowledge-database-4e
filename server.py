@@ -13,7 +13,7 @@ from flask import Flask, render_template, request
 app = Flask(__name__)
 
 def connectToDB():
-  connectionString = 'dbname=helix user=helix password=helix123 host=localhost'
+  connectionString = 'dbname=helix user=helix password=helix host=localhost'
   print connectionString
   try:
     return psycopg2.connect(connectionString)

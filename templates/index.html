@@ -61,10 +61,10 @@
                         <a class="page-scroll" href="#download">Basic Information</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#features">Login</a>
+                        <a class="page-scroll" href="#features">Details</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact</a>
+                        <a class="page-scroll" href="#contact">Login</a>
                     </li>
                 </ul>
             </div>
@@ -86,14 +86,14 @@
                 </div>
                 <div class="col-sm-5">
                     <div class="device-container">
-                        <img src="static/img/Corvo_attano_face_render_outline.png" class="fit" style="margin: 325px 0px">
+                        <img src="static/img/knight.png" class="fit" style="margin: 100px 0px">
                     </div>
                 </div>
             </div>
         </div>
     </header>
-
-    <section id="download" class="download bg-primary text-center">
+    
+    <section id="download" class="download bg-primary text-center"style="background:url(static/img/tableTexture.jpg); background-size: 100% auto">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -102,7 +102,7 @@
                     
                     <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary">
                       <option>Level</option>
-                      {% for i in range (0, levels+1) %}
+                      {% for i in range (1, levels+1) %}
                       <option>Level {{i}}</option>
                       {% endfor %}
                     </select>
@@ -133,71 +133,86 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-heading">
-                        <h2>Unlimited Features, Unlimited Fun</h2>
-                        <p class="text-muted">Check out what you can do with this app theme!</p>
+                        <h2>D&D 4E Dynamic Table</h2>
                         <hr>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="device-container">
-                        <div class="device-mockup iphone6_plus portrait white">
-                            <div class="device">
-                                <div class="screen">
-                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="static/img/demo-screen-1.jpg" class="img-responsive" alt=""> </div>
-                                <div class="button">
-                                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="feature-item">
-                                    <i class="icon-screen-smartphone text-primary"></i>
-                                    <h3>Device Mockups</h3>
-                                    <p class="text-muted">Ready to use HTML/CSS device mockups, no Photoshop required!</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="feature-item">
-                                    <i class="icon-camera text-primary"></i>
-                                    <h3>Flexible Use</h3>
-                                    <p class="text-muted">Put an image, video, animation, or anything else in the screen!</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="feature-item">
-                                    <i class="icon-present text-primary"></i>
-                                    <h3>Free to Use</h3>
-                                    <p class="text-muted">As always, this theme is free to download and use for any purpose!</p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="feature-item">
-                                    <i class="icon-lock-open text-primary"></i>
-                                    <h3>Open Source</h3>
-                                    <p class="text-muted">Since this theme is MIT licensed, you can use it commercially!</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
+            <h1>As a LEVEL RACE CLASS, you receive the following starting stats:</h1>
+            
+            <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Health</th>
+                    <th>Implements</th>
+                    <th>Main Stat</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>12</td>
+                    <td>Orb</td>
+                    <td>Intelligence</td>
+                  </tr>
+                  <tr>
+                    <td>30</td>
+                    <td>Broadsword</td>
+                    <td>Strength</td>
+                  </tr>
+                  <tr>
+                    <td>15</td>
+                    <td>Dagger</td>
+                    <td>Dexterity</td>
+                  </tr>
+                </tbody>
+              </table>
+            
+            <!--<div class="row">-->
+            <!--    <div class="col-lg-8 text-center" style="position: center">-->
+            <!--        <div class="container-fluid">-->
+            <!--            <div class="row">-->
+            <!--                <div class="col-md-6">-->
+            <!--                    <div class="feature-item">-->
+            <!--                        <i class="icon-screen-smartphone text-primary"></i>-->
+            <!--                        <h3>iPhones</h3>-->
+            <!--                        <p class="text-muted">They make nice icons!</p>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-6">-->
+            <!--                    <div class="feature-item">-->
+            <!--                        <i class="icon-camera text-primary"></i>-->
+            <!--                        <h3>Cameras</h3>-->
+            <!--                        <p class="text-muted">A blast to the past!</p>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <div class="row">-->
+            <!--                <div class="col-md-6">-->
+            <!--                    <div class="feature-item">-->
+            <!--                        <i class="icon-present text-primary"></i>-->
+            <!--                        <h3>Presents</h3>-->
+            <!--                        <p class="text-muted">You'll never receive any!</p>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--                <div class="col-md-6">-->
+            <!--                    <div class="feature-item">-->
+            <!--                        <i class="icon-lock-open text-primary"></i>-->
+            <!--                        <h3>Locks</h3>-->
+            <!--                        <p class="text-muted">Locks have now become digital! Neat!</p>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--        </div>-->
+            <!--    </div>-->
+            <!--</div>-->
+            
     </section>
 
     <section class="cta">
         <div class="cta-content">
             <div class="container">
-                <h2>Stop waiting.<br>Start building.</h2>
-                <a href="#contact" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
+                <h2>Don't let your dreams be dreams.<br>Just do it.</h2>
             </div>
         </div>
         <div class="overlay"></div>
@@ -232,6 +247,9 @@
                 </li>
                 <li>
                     <a href="#">FAQ</a>
+                </li>
+                <li>
+                    <a href="#">See you, space cowboy...</a>
                 </li>
             </ul>
         </div>

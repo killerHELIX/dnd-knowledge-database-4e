@@ -406,6 +406,12 @@ footer ul li a.active {
   background: -webkit-linear-gradient(#fdcc52, #fdc539);
   background: linear-gradient(#fdcc52, #fdc539);
 }
+
+.bg-secondary {
+  background-image: url("static/img/tableTexture.jpg");
+  background-size: 100% auto;
+}
+
 .text-primary {
   color: #fdcc52;
 }

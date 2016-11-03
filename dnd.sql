@@ -87,7 +87,7 @@ CREATE TABLE feats (
 --
 
 DROP TABLE IF EXISTS powers;
-CREATE TABLE IF EXISTS powers (
+CREATE TABLE powers (
     ID serial NOT NULL,
     name varchar(50) NOT NULL default '',
     origin varchar(50) NOT NULL default '',

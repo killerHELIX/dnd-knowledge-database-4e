@@ -12,7 +12,7 @@
     <title>Dungeons and Dragons 4th Edition Knowledge Database</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
@@ -20,12 +20,18 @@
     <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
 
     <!-- Plugin CSS -->
-    <link rel="stylesheet" href="static/vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="static/vendor/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="static/vendor/simple-line-icons/css/simple-line-icons.css">
-    <link rel="stylesheet" href="static/vendor/device-mockups/device-mockups.min.css">
+    <link rel="stylesheet" href="static/vendor/device-mockups/device-mockups.css">
 
     <!-- Theme CSS -->
-    <link href="static/css/new-age.min.css" rel="stylesheet">
+    <link href="static/css/new-age.css" rel="stylesheet">
+    
+    <!-- bootstrap select styling -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+    
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,10 +58,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#download">Download</a>
+                        <a class="page-scroll" href="#download">Basic Information</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#features">Features</a>
+                        <a class="page-scroll" href="#features">Login</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#contact">Contact</a>
@@ -67,30 +73,20 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <header>
+    <header style="background:url(static/img/parchment.jpg); background-size: 100% auto">
         <div class="container">
             <div class="row">
                 <div class="col-sm-7">
                     <div class="header-content">
                         <div class="header-content-inner">
-                            <h1>New Age is an app landing page that will help you beautifully showcase your new mobile app, or anything else!</h1>
-                            <a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
+                            <h1>Welcome to the D&D 4th Edition Knowledge Database. If you don't know where to start, you're in the right place.</h1>
+                            <a href="#download" class="btn btn-outline btn-xl page-scroll">Continue</a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-5">
                     <div class="device-container">
-                        <div class="device-mockup iphone6_plus portrait white">
-                            <div class="device">
-                                <div class="screen">
-                                    <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                                    <img src="static/img/demo-screen-1.jpg" class="img-responsive" alt="">
-                                </div>
-                                <div class="button">
-                                    <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                                </div>
-                            </div>
-                        </div>
+                        <img src="static/img/Corvo_attano_face_render_outline.png" class="fit" style="margin: 325px 0px">
                     </div>
                 </div>
             </div>
@@ -101,12 +97,32 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
-                    <h2 class="section-heading">Discover what all the buzz is about!</h2>
-                    <p>Our app is available on any mobile device! Download now to get started!</p>
-                    <div class="badges">
-                        <a class="badge-link" href="#"><img src="static/img/google-play-badge.svg" alt=""></a>
-                        <a class="badge-link" href="#"><img src="static/img/app-store-badge.svg" alt=""></a>
-                    </div>
+                    <h2 class="section-heading">In order to gather the right information, we'll need some data from you.</h2>
+                    <h1>Your character is a </h1>
+                    
+                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary">
+                      <option>Level</option>
+                      {% for i in range (0, levels+1) %}
+                      <option>Level {{i}}</option>
+                      {% endfor %}
+                    </select>
+                
+                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary">
+                      <option>Race</option>
+                      <option>Human</option>
+                      <option>Orc</option>
+                      <option>Shifter</option>
+                      <option>Genasi</option>
+                    </select>
+
+                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary">
+                      <option>Class</option>
+                      <option>Fighter</option>
+                      <option>Warlock</option>
+                      <option>Wizard</option>
+                      <option>Rogue</option>
+                    </select>
+
                 </div>
             </div>
         </div>
@@ -189,16 +205,16 @@
 
     <section id="contact" class="contact bg-primary">
         <div class="container">
-            <h2>We <i class="fa fa-heart"></i> new friends!</h2>
+            <h2>Something wrong or incorrect? Let us know!</h2>
             <ul class="list-inline list-social">
                 <li class="social-twitter">
-                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="http://twitter.com"><i class="fa fa-twitter"></i></a>
                 </li>
                 <li class="social-facebook">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="http://facebook.com"><i class="fa fa-facebook"></i></a>
                 </li>
                 <li class="social-google-plus">
-                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="http://plus.google.com"><i class="fa fa-google-plus"></i></a>
                 </li>
             </ul>
         </div>
@@ -232,6 +248,13 @@
 
     <!-- Theme JavaScript -->
     <script src="static/js/new-age.min.js"></script>
+    
+    <!-- bootstrap select scripts-->
+    <script src="static/vendor/bootstrap-select-1.11.2/js/bootstrap-select.js"></script>
+    <script src="static/vendor/bootstrap-select-1.11.2/js/i18n/defaults-*.min.js"></script>
+
+    
+
 
 </body>
 

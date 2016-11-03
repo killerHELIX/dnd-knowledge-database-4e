@@ -23,8 +23,10 @@ def connectToDB():
 
 @app.route('/', methods=['GET', 'POST'])
 def mainIndex():
+  
+    maxLevels = 30
     
-    return render_template('index.html')
+    return render_template('index.html', levels=maxLevels)
 
 # start the server
 if __name__ == '__main__':

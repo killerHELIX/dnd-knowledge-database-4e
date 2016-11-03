@@ -69,7 +69,7 @@ CREATE TABLE class (
     keystat varchar(50) NOT NULL default '',
     armor varchar(80) NOT NULL default '',
     weapon varchar(150) NOT NULL default '',
-    implement varchar(50) NOT NULL default '',
+    implement varchar(50),
     defense varchar(50) NOT NULL default '',
     starthp integer NOT NULL default '0',
     levelhp integer NOT NULL default '0',
@@ -83,6 +83,23 @@ CREATE TABLE class (
 -- Table Dump for Class
 --
 
+INSERT INTO class (name, role, source, keystat, armor, weapon, implement, defense, starthp, levelhp, surge, skills, features)
+VALUES ('Cleric', 'Leader', 'Divine', 'Wisdom, Strength, Charisma', 'Cloth, leather, hide, chainmail', 'Simple melee, simple ranged', 'Holy Symbol', '+2 to Will', 12, 5, 7, 'Trained Skills: Religion. From the class skills list below, choose three more trained skills at 1st level. Class Skills: Arcana (Int), Diplomacy (Cha), Heal (Wis), History (Int), Insight (Wis), Religion (Int)', 
+E'Channel Divinity: Once per encounter you can invoke divine power, filling yourself with the might of your patron deity. With the divine might you invoke you can wield special powers, such as turn undead and divine fortune. Some clerics learn other uses for this feature; for instance, the divinity feats in Chapter 6 grant characters with access to the Channel Divinity class feature the ability to use additional special powers.  Regardless of how many different uses for Channel Divinity you know, you can use only one such ability per encounter. The special ability or power you invoke works just like your other powers. \n Healer’s Lore: Your study of healing allows you to make the most of your healing prayers. When you grant healing with one of your cleric powers that has the healing keyword, add your Wisdom modifier to the hit points the recipient regains. \n Healing Word: Using the healing word power, clerics can grant their comrades additional resilience with nothing more than a short prayer. \n Ritual Casting: You gain the Ritual Caster feat as a bonus feat, allowing you to use magical rituals. You possess a ritual book, and it contains two rituals you have mastered: the Gentle Repose ritual and one other 1st-level ritual of your choice. \n Clerics and Deities: All clerics choose a specific faith to which they devote themselves. Usually this faith is the worship of a specific patron deity—for example, Moradin, Pelor, or Erathis. Sometimes clerics are devoted to churches that venerate groups of deities or even philosophies. \n Cleric Powers: Your cleric powers are called prayers. Some are better for the battle cleric and some are better for the devoted cleric, but a cleric can choose any power when making a power selection. \n Class Features: The cleric has two class features that work like powers: Channel Divinity and healing word. The Channel Divinity class feature encompasses multiple powers, two of which (divine fortune and turn undead) are presented below.');
+-- INSERT INTO class (name, role, source, keystat, armor, weapon, defense, starthp, levelhp, surge, skills, features)
+-- VALUES ('Fighter', 'Defender', 'Martial', 'Strength, Wisdom, Dexterity, Constitution');
+-- INSERT INTO class (name, role, source, keystat, armor, weapon, implement, defense, starthp, levelhp, surge, skills, features)
+-- VALUES ('Paladin', 'Defender', 'Divine', 'Strength, Charisma, Wisom');
+-- INSERT INTO class (name, role, source, keystat, armor, weapon, defense, starthp, levelhp, surge, skills, features)
+-- VALUES ('Ranger', 'Martial', 'Striker', 'Strength, Dexterity, Wisdom');
+-- INSERT INTO class (name, role, source, keystat, armor, weapon, defense, starthp, levelhp, surge, skills, features)
+-- VALUES ('Rogue', 'Martial', 'Striker', 'Dexterity, Strenght, Charisma');
+-- INSERT INTO class (name, role, source, keystat, armor, weapon, implement, defense, starthp, levelhp, surge, skills, features)
+-- VALUES ('Warlock', 'Arcane', 'Striker', 'Charisma, Constitution, Intelligence');
+-- INSERT INTO class (name, role, source, keystat, armor, weapon, defense, starthp, levelhp, surge, skills, features)
+-- VALUES ('Warlord', 'Martial', 'Leader', 'Strength, Intelligence, Charisma');
+-- INSERT INTO class (name, role, source, keystat, armor, weapon, implement, defense, starthp, levelhp, surge, skills, features)
+-- VALUES ('Wizard', 'Arcane', 'Controller', 'Intelligence, Wisdom, Dexterity');
 
 
 --

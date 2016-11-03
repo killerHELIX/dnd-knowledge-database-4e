@@ -12,13 +12,13 @@ DROP TABLE IF EXISTS race;
 CREATE TABLE race (
     ID serial NOT NULL,
     name varchar(50) NOT NULL default '',
-    stats varchar(50) NOT NULL DEFAULT '',
-    size varchar(50) NOT NULL DEFAULT 'Medium',
-    speed integer NOT NULL DEFAULT '6',
-    vision varchar(50) NOT NULL DEFAULT 'Normal',
-    language varchar(100) NOT NULL DEFAULT '',
+    stats varchar(50) NOT NULL default '',
+    size varchar(50) NOT NULL default 'Medium',
+    speed integer NOT NULL default '6',
+    vision varchar(50) NOT NULL default 'Normal',
+    language varchar(100) NOT NULL default 'common',
     skill varchar(50) NOT NULL default '',
-    traits text NOT NULL DEFAULT '',
+    traits text NOT NULL default '',
     PRIMARY KEY (ID)
 );
 
@@ -67,5 +67,37 @@ CREATE TABLE feats (
     name varchar(50) NOT NULL default '',
     prereq text NOT NULL default '',
     benefit text NOT NULL default '',
+    PRIMARY KEY (ID)
+);
+
+--
+-- Table Dump for Feats
+--
+
+
+
+--
+-- Table Structure for Powers
+--
+
+DROP TABLE IF EXISTS powers;
+CREATE TABLE IF EXISTS powers (
+    ID serial NOT NULL,
+    name varchar(50) NOT NULL default '',
+    origin varchar(50) NOT NULL default '',
+    level integer NOT NULL default '1',
+    flavor text NOT NULL default '',
+    encountertype varchar(20) NOT NULL default 'Encounter',
+    keywords text NOT NULL default '',
+    actiontype varchar(20) NOT NULL default '',
+    range varchar(50) NOT NULL default '',
+    target text,
+    attack text,
+    trigger text,
+    hit text,
+    effect text,
+    miss text,
+    special text,
+    sustain text,
     PRIMARY KEY (ID)
 );

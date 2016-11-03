@@ -28,7 +28,11 @@ CREATE TABLE race (
 -- Table Dump for Race
 --
 
-
+INSERT INTO race (name, stats, language, skill, traits)
+VALUES ('Human', '+2 to one ability score of your choice', 'common and one language of your choice', 'no skill bonuses',
+E'Bonus Feat: You gain a bonus feat at 1st level. You must meet the feat''s prerequisites. \n Bonus Skill: You gain training in one additional skill from your class skills list. \n Human defense Bonus: You gain a +1 racial bonus to Fortitude, Reflex and Will. \n Heroic Effort: You have the Heroic Effort power.');
+INSERT INTO race (name, stats, language, skill, traits)
+VALUES
 
 --
 -- Table Structure for Class

@@ -50,7 +50,7 @@ INSERT INTO race (name, stats, size, language, skill, traits)
 VALUES ('Halfling', '+2 Dexterity, +2 Charisma', 'Small', 'Common, Choice of another', '+2 Acrobatics, +2 Thievery',
 E'Bold: You gain a +5 racial bonus to saving throws against fear. \n Nimble Reaction: You gain a +2 racial bonus to AC against opportunity attacks. \n Second Chance: You can use second chance as an encounter power.');
 INSERT INTO race (name, stats, vision, language, skill, traits)
-VALUES ('Tiefling', '+2 Intelligence, +2 Charisma', 'Low-Light', 'Common, Choice of another', '+2 Bluff, +2 Stealth',
+VALUES ('Tiefling', '+2 Charisma, +2 Intelligence', 'Low-Light', 'Common, Choice of another', '+2 Bluff, +2 Stealth',
 'Bloodhunt: You gain a +1 racial bonus to attack rolls against bloodied foes. \n Fire Resistance: You have resist fire 5 + one-half your level. \n Infernal Wrath: You can use infernal wrath as an encounter power.');
 
 
@@ -116,9 +116,11 @@ E'Arcane Implement Mastery: You specialize in the use of one kind of implement t
 DROP TABLE IF EXISTS feats;
 CREATE TABLE feats (
     ID serial NOT NULL,
+    Tier varchar(20) NOT NULL default 'Heroic',
     name varchar(50) NOT NULL default '',
-    prereq text NOT NULL default '',
+    prereq text,
     benefit text NOT NULL default '',
+    special text,
     PRIMARY KEY (ID)
 );
 
@@ -126,7 +128,87 @@ CREATE TABLE feats (
 -- Table Dump for Feats
 --
 
-
+INSERT INTO feats (name, prereq, benefit) VALUES('Action Surge', 'Human', 'You gain a +3 bonus to attack rolls you make during any action you gained by spending an action point.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Agile Hunter', 'Dex 15, ranger, Hunter’s Quarry class feature', 'When you score a critical hit with a melee attack against the target of your Hunter’s Quarry, you can shift as a free action, and the enemy takes a –2 penalty on attack rolls against you until the end of your next turn.');
+INSERT INTO feats (name, benefit) VALUES('Alertness', 'You don’t grant enemies combat advantage during surprise rounds. You also gain a +2 feat bonus to Perception checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Armor of Bahamut', 'Channel Divinity class feature, must worship Bahamut', 'You can invoke the power of your deity to use armor of Bahamut. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Armor Proficiency (Chainmail)', 'Str 13, Con 13, training with leather or hide armor', 'You gain training with chainmail.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Armor Proficiency (Chainmail)', 'Str 13, Con 13, training with leather armor', 'You gain training with hide.');
+INSERT INTO feats (name, benefit) VALUES('Armor Proficiency (Chainmail)', 'You gain training with leather.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Armor Proficiency (Chainmail)', 'Str 13, Con 13, training with scale armor', 'You gain training with plate.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Armor Proficiency (Chainmail)', 'Str 15, Con 15, training with chainmail armor', 'You gain training with scale.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Astral Fire', 'Dex 13, Cha 13', 'You gain a +1 feat bonus to damage rolls when you use a power that has the fire or radiant keyword. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Avandra''s Rescue', 'Channel Divinity class feature, must worship Avandra', 'You can invoke the power of your deity to use Avandra''s Rescue. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Backstabber', 'Rogue, Sneak Attack class feature', 'The extra damage dice from your Sneak Attack class feature increase from d6s to d8s.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Blade Opportunist', 'Str 13, Dex13', 'You gain a +2 bonus to opportunity attack rolls with a heavy blade or a light blade.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Burning Blizzard', 'Int 13, Wis 13', 'You gain a +1 feat bonus to damage rolls when you use a power that has the acid or cold keyword. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Combat Reflexes', 'Dex 13', 'You gain a +1 bonus to opportunity attack rolls.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Corellon''s Grace', 'Channel Divinity class feature, must worship Corellon', 'You can invoke the power of your deity to use Corellon''s grace. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Dark Fury', 'Con 13, Wis 13', 'You gain a +1 feat bonus to damage rolls when you use a power that has the necrotic or psychic keyword. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.');
+INSERT INTO feats (name, benefit) VALUES('Defensive Mobility', 'You gain a +2 bonus to AC against opportunity attacks.');
+INSERT INTO feats (name, prereq, benefit, special) VALUES('Distracting Shield', 'Wis 15, fighter, Combat Challenge class feature', 'If you hit a foe with an attack granted by your Combat Challenge class feature, the target takes a –2 penalty to attack rolls until the start of your next turn.', 'You must have a shield equipped to benefit from this feat.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Dodge Giants', 'Dwarf', 'You gain a +1 bonus to AC and Reflex defense against the attacks of Large or larger foes.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Dragonborn Frenzy', 'Dragonborn', 'While you are bloodied, you gain a +2 bonus to damage rolls.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Dragonborn Senses', 'Dragonborn', 'You gain low-light vision. You gain a +1 feat bonus to Perception checks.');
+INSERT INTO feats (name, benefit) VALUES('Durable', 'Increase your number of healing surges by two');
+INSERT INTO feats (name, prereq, benefit) VALUES('Dwarven Weapon Training', 'Dwarf', 'You gain proficiency and a +2 feat bonus to damage rolls with axes and hammers.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Eladrin Soldier', 'Eladrin', 'You gain proficiency with all spears and a +2 feat bonus to damage rolls with longswords and all spears.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Elven Precision', 'Elf, elven accuracy racial power', 'When you use the elven accuracy power, you gain a +2 bonus to the new attack roll.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Enlarged Dragon Breath', 'Dragonborn, dragon breath racial power', 'When you use your dragon breath power, you can choose to make it blast 5 instead of blast 3.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Escape Artist', 'Trained in Acrobatics', 'You can attempt to escape a grab as a minor action, instead of as a move action. You gain a +2 feat bonus to Acrobatics checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Expanded Spellbook', 'Wis 13, wizard', 'Choose one daily wizard attack spell of every level you know. Add this spell to your spellbook. Each time you gain a new level of daily wizard attack spells, you learn one extra spell of that level (in other words, add three spells to your spellbook instead of only two). This feat doesn’t change the number of daily attack spells you can prepare each day.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Far Shot', 'Dex 13', 'When you use a projectile weapon such as a bow or a crossbow, increase both the normal range and the long range by 5 squares.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Far Throw', 'Str 13', 'When you use a thrown weapon such as a dagger or a javelin, increase both the normal range and the long range by 2 squares.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Fast Runner', 'Con 13', 'You gain a +2 bonus to speed when you charge or run.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Ferocious Rebuke', 'Tiefling, infernal wrath racial power', 'When you use the infernal wrath power and hit with an attack, you can push the target 1 square in addition to any damage you deal.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Group Insight', 'Half-elf', 'You grant allies within 10 squares of you a +1 racial bonus to Insight checks and initiative checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Halfling Agility', 'Halfling, second chance racial power', 'When you use your halfling second chance ability, the attacker takes a –2 penalty to the new attack roll.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Harmony of Erathis', 'Channel Divinity class feature, must worship Erathis', 'You can invoke the power of your deity to use harmony of Erathis. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Healing Hands', 'Paladin, lay on hands power', 'When you use the lay on hands power, the affected ally regains additional hit points equal to your Charisma modifier.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Hellfire Blood', 'Tiefling', 'You gain a +1 feat bonus to attack rolls and damage rolls when you use a power that has the fire or fear keyword.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Human Perseverance', 'Human', 'You gain a +1 feat bonus to saving throws.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Improved Dark One''s Blessing', 'Con 15, warlock, infernal pact', 'Your Dark One’s Blessing now gives you 3 additional temporary hit points.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Improved Fate of the Void', 'Con 13 or Cha 13, warlock, star pact', 'Your Fate of the Void grants an additional +1 bonus to the d20 roll.');
+INSERT INTO feats (name, benefit) VALUES('Improved Initiative', 'You gain a +4 feat bonus to initiative checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Improved Misty Step', 'Int 13, warlock, fey pact', 'Misty Step now allows you to teleport an additional 2 squares.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Inspired Recovery', 'Warlord, Inspiring Presence class feature', 'When an ally who can see you spends an action point to gain an extra standard action, that ally can roll a saving throw as a free action, adding your Charisma modifier to the roll.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Ioun''s Poise', 'Channel Divinity class feature, must worship Ioun', 'ou can invoke the power of your deity to use Ioun''s poise. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Jack of All Trades', 'Int 13', 'You gain a +3 feat bonus to all untrained skill checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Kord''s Favor', 'Channel Divinity class feature, must worship Kord', 'You can invoke the power of your deity to use Kord''s favor. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Lethal Hunter', 'Ranger, Hunter’s Quarry class feature', 'The extra damage dice from your Hunter’s Quarry class feature increase from d6s to d8s.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Light Step', 'Elf', 'For the purpose of hourly or daily travel rates, add 1 to your overland speed and the speed of all allies in your traveling group. Add 5 to the DC required to find or follow your tracks. If traveling with allies, you can share this benefit with up to five other characters. You gain a +1 feat bonus to Acrobatics checks and Stealth checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Linguist', 'Int 13', 'Choose three languages. You can now speak, read, and write those languages fluently. Special: You can take this feat more than once. Each time you select this feat, choose three new languages to learn.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Long Jumper', 'Trained in Athletics', 'You can make all long jumps as if you had a running start. You also gain a +1 feat bonus to Athletics checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Lost in the Crowd', 'Halfling', 'You gain a +2 bonus to AC when you are adjacent to at least two enemies larger than you.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Melora''s Tide', 'Channel Divinity class feature, must worship Melora', 'You can invoke the power of your deity to use Melora''s tide. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Moradin''s Resolve', 'Channel Divinity class feature, must worship Moradin', 'You can invoke the power of your deity to use Moradin’s resolve. [Power]');
+INSERT INTO feats (name, benefit) VALUES('Mounted Combat', 'Benefit: When you ride a creature, you gain access to any special mount abilities it confers to its rider. Not every creature has these abilities. The Dungeon Master’s Guide has more information on mounts and mounted combat. While you are riding a creature, the creature can make any Athletics, Acrobatics, Endurance, or Stealth checks using your base skill check bonus rather than its own if yours is higher.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Nimble Blade', 'Dex 15', 'When you attack with a light blade and you have combat advantage, you gain a +1 bonus to attack rolls.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Pelor''s Radiance', 'Channel Divinity class feature, must worship Pelor', 'You can invoke the power of your deity to use Pelor''s radiance. [Power]');
+INSERT INTO feats (name, prereq, benefit, special) VALUES('Potent Challenge', 'Con 15, fighter, Combat Challenge class feature', 'If you hit a foe with an attack granted by your Combat Challenge class feature, add your Constitution modifier to the damage roll.', 'This benefit applies only to attacks made with two-handed weapons.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Power Attack', 'Str 15', 'When making a melee attack, you can take a –2 penalty to the attack roll. If the attack hits, you gain a +2 bonus to the damage roll (or a +3 bonus to the damage roll with a two-handed weapon) per tier. The attack penalty remains the same.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Powerful Charge', 'Str 13', 'When you charge, you gain a +2 bonus to damage and a +2 bonus to bull rush attempts.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Precise Hunter', 'Wis 15, ranger, Hunter’s Quarry class feature', 'When you score a critical hit against the target of your Hunter’s Quarry with a ranged attack, your allies gain a +1 bonus to attack rolls against that target until the start of your next turn.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Press the Advantage', 'Cha 15, Rogue', 'If you score a critical hit while you have combat advantage, you gain combat advantage against the target until the end of your next turn.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Quick Draw', 'Dex 13', 'You can draw a weapon (or an object stored in a belt pouch, bandolier, or similar container, such as a potion) as part of the same action used to attack with the weapon or use the object. You also gain a +2 feat bonus to initiative checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Raging Storm', 'Con 13, Dex 13', 'You gain a +1 feat bonus to damage rolls when you use a power that has the lightning or thunder keyword. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Raven Queen''s Blessing', 'Channel Divinity class feature, must worship the Raven Queen', 'You can invoke the power of your deity to use Raven Queen''s blessing. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Ritual Caster', 'Trained in Arcana or Religion', 'You can master and perform rituals of your level or lower. See Chapter 10 for information on acquiring, mastering, and performing rituals. Even though some rituals use the Heal skill or the Nature skill, the Arcana skill or the Religion skill is required to understand how to perform rituals.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Sehanine''s Reversal', 'Channel Divinity class feature, must worship Sehanine', 'You can invoke the power of your deity to use Sehanine''s reversal. [Power]');
+INSERT INTO feats (name, prereq, benefit) VALUES('Shield Proficiency (Heavy)', 'Str 15, Shield Proficiency (Light)', 'You gain proficiency with heavy shields.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Shield Proficiency (Light)', 'Str 13', 'You gain proficiency with light shields.');
+INSERT INTO feats (name, prereq, benefit, special) VALUES('Shield Push', 'Fighter, Combat Challenge class feature', 'If you hit a foe with an attack granted by your Combat Challenge class feature, you push the target 1 square after dealing damage.', 'You must carry a shield to benefit from this feat.');
+INSERT INTO feats (name, prereq, benefit, special) VALUES('Skill Focus', 'Training in chose skill', 'Choose a skill in which you have training. You have a +3 feat bonus to checks with that skill.', 'You can take this feat more than once. Each time you select this feat, choose a different skill.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Skill Training', 'You gain training in one skill. The skill need not be on your class skill list.', 'You can take this feat more than once. Each time you select this feat, choose a skill in which you are not trained.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Sure Climber', 'Trained in Athletics', 'A successful Athletics check allows you to climb at your normal speed, rather than half speed. You also gain a +1 feat bonus to Athletics checks.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Surprise Knockdown', 'Str 15, rogue', 'If you score a critical hit while you have combat advantage, you knock the target prone.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Tactical Assault', 'Warlord, Tactical Presence class feature', 'When an ally who can see you spends an action point to make an attack, the attack’s damage roll gains a bonus equal to your Intelligence modifier.');
+INSERT INTO feats (name, benefit) VALUES('Toughness', 'When you take this feat, you gain additional hit points. You gain an additional 5 hit points at each tier of play (at 1st, 11th, and 21st level).');
+INSERT INTO feats (name, prereq, benefit) VALUES('Two-Weapon Defense', 'Dex 13, Two-Weapon Fighting', 'While holding a melee weapon in each hand, you gain a +1 shield bonus to AC and Reflex.');
+INSERT INTO feats (name, prereq, benefit) VALUES('Two-Weapon Fighting', 'Dex 13', 'While holding a melee weapon in each hand, you gain a +1 bonus to damage rolls with your main weapon.');
+INSERT INTO feats (name, benefit, special) VALUES('Weapon Focus', 'Choose a specific weapon group, such as spears or heavy blades. You gain a +1 feat bonus o damage rolls with your chosen weapon group. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.', 'You can take this feat more than once. Each time you select this feat, choose another weapon group.');
+INSERT INTO feats (name, benefit, special) VALUES('Weapon Proficiency', 'You gain proficiency in a single weapon of your choice', 'You can take this feat more than once. Each time you select this feat, choose another weapon.');
+INSERT INTO feats (name, benefit) VALUES('Wintertouched', 'When attacking a creature that is vulnerable to cold, you gain combat advantage when you use a power that has the cold keyword.');
 
 --
 -- Table Structure for Powers
@@ -143,13 +225,8 @@ CREATE TABLE powers (
     keywords text NOT NULL default '',
     actiontype varchar(20) NOT NULL default '',
     range varchar(50) NOT NULL default '',
-    target text,
-    attack text,
-    trigger text,
-    hit text,
-    effect text,
-    miss text,
-    special text,
-    sustain text,
+    target text, attack text, trigger text,
+    hit text, effect text, miss text,
+    special text, sustain text,
     PRIMARY KEY (ID)
 );

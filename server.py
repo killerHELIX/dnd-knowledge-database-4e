@@ -3,17 +3,18 @@ import random
 import psycopg2
 import psycopg2.extras
 import sys
+from flask_socketio import SocketIO, emit
+from flask import Flask, render_template, request
+app = Flask(__name__)
 
 # need this to prevent UnicodeDecodeError
 reload(sys)
 sys.setdefaultencoding('utf8')
 
-
-from flask import Flask, render_template, request
-app = Flask(__name__)
+socketio = SocketIO(app)
 
 def connectToDB():
-  connectionString = 'dbname=helix user=helix password=helix host=localhost'
+  connectionString = 'dbname=dungeons user=postgres password=postgres host=localhost'
   print connectionString
   try:
     return psycopg2.connect(connectionString)
@@ -24,9 +25,14 @@ def connectToDB():
 @app.route('/', methods=['GET', 'POST'])
 def mainIndex():
   
-    maxLevels = 30
+  conn = connectToDB()
+  cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+  method = request.method
+  print (method)
+  
+  maxLevels = 30
     
-    return render_template('index.html', levels=maxLevels)
+  return render_template('index.html', levels=maxLevels)
 
 # start the server
 if __name__ == '__main__':

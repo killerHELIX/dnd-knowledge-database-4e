@@ -28,6 +28,7 @@ CREATE TABLE race (
 -- Table Dump for Race
 --
 
+--PLAYER HANDBOOK ONE RACES
 INSERT INTO race (name, stats, language, skill, traits)
 VALUES ('Human', '+2 to one ability score of your choice', 'common and one language of your choice', 'no skill bonuses',
 E'Bonus Feat: You gain a bonus feat at 1st level. You must meet the feat''s prerequisites. \n Bonus Skill: You gain training in one additional skill from your class skills list. \n Human defense Bonus: You gain a +1 racial bonus to Fortitude, Reflex and Will. \n Heroic Effort: You have the Heroic Effort power.');
@@ -52,7 +53,7 @@ E'Bold: You gain a +5 racial bonus to saving throws against fear. \n Nimble Reac
 INSERT INTO race (name, stats, vision, language, skill, traits)
 VALUES ('Tiefling', '+2 Charisma, +2 Intelligence', 'Low-Light', 'Common, Choice of another', '+2 Bluff, +2 Stealth',
 'Bloodhunt: You gain a +1 racial bonus to attack rolls against bloodied foes. \n Fire Resistance: You have resist fire 5 + one-half your level. \n Infernal Wrath: You can use infernal wrath as an encounter power.');
-
+--END PLAYER HANDBOOK 1 RACES
 
 
 
@@ -83,9 +84,10 @@ CREATE TABLE class (
 -- Table Dump for Class
 --
 
+--PLAYER HANDBOOK 1 CLASSES
 INSERT INTO class (name, role, source, keystat, armor, weapon, implement, defense, starthp, levelhp, surge, skills, features)
 VALUES ('Cleric', 'Leader', 'Divine', 'Wisdom, Strength, Charisma', 'Cloth, leather, hide, chainmail', 'Simple melee, simple ranged', 'Holy Symbol', '+2 to Will', 12, 5, 7, 'Trained Skills: Religion. From the class skills list below, choose three more trained skills at 1st level. Class Skills: Arcana (Int), Diplomacy (Cha), Heal (Wis), History (Int), Insight (Wis), Religion (Int)', 
-E'Channel Divinity: Once per encounter you can invoke divine power, filling yourself with the might of your patron deity. With the divine might you invoke you can wield special powers, such as turn undead and divine fortune. Some clerics learn other uses for this feature; for instance, the divinity feats in Chapter 6 grant characters with access to the Channel Divinity class feature the ability to use additional special powers.  Regardless of how many different uses for Channel Divinity you know, you can use only one such ability per encounter. The special ability or power you invoke works just like your other powers. \n Healer’s Lore: Your study of healing allows you to make the most of your healing prayers. When you grant healing with one of your cleric powers that has the healing keyword, add your Wisdom modifier to the hit points the recipient regains. \n Healing Word: Using the healing word power, clerics can grant their comrades additional resilience with nothing more than a short prayer. \n Ritual Casting: You gain the Ritual Caster feat as a bonus feat, allowing you to use magical rituals. You possess a ritual book, and it contains two rituals you have mastered: the Gentle Repose ritual and one other 1st-level ritual of your choice. \n Clerics and Deities: All clerics choose a specific faith to which they devote themselves. Usually this faith is the worship of a specific patron deity—for example, Moradin, Pelor, or Erathis. Sometimes clerics are devoted to churches that venerate groups of deities or even philosophies. \n Cleric Powers: Your cleric powers are called prayers. Some are better for the battle cleric and some are better for the devoted cleric, but a cleric can choose any power when making a power selection. \n Class Features: The cleric has two class features that work like powers: Channel Divinity and healing word. The Channel Divinity class feature encompasses multiple powers, two of which (divine fortune and turn undead) are presented below.');
+E'Channel Divinity: Once per encounter you can invoke divine power, filling yourself with the might of your patron deity. With the divine might you invoke you can wield special powers, such as turn undead and divine fortune. Some clerics learn other uses for this feature; for instance, the divinity feats in Chapter 6 grant characters with access to the Channel Divinity class feature the ability to use additional special powers.Regardless of how many different uses for Channel Divinity you know, you can use only one such ability per encounter. The special ability or power you invoke works just like your other powers. \n Healer’s Lore: Your study of healing allows you to make the most of your healing prayers. When you grant healing with one of your cleric powers that has the healing keyword, add your Wisdom modifier to the hit points the recipient regains. \n Healing Word: Using the healing word power, clerics can grant their comrades additional resilience with nothing more than a short prayer. \n Ritual Casting: You gain the Ritual Caster feat (page 200) as a bonus feat, allowing you to use magical rituals (see Chapter 10). You possess a ritual book, and it contains two rituals you have mastered: the Gentle Repose ritual and one other 1st-level ritual of your choice.');
 INSERT INTO class (name, role, source, keystat, armor, weapon, defense, starthp, levelhp, surge, skills, features)
 VALUES ('Fighter', 'Defender', 'Martial', 'Strength, Wisdom, Dexterity, Constitution', 'Cloth, leather, hide, chainmail, scale; light shield, heavy shield', 'Simple melee, military melee, simple ranged, military ranged', '+2 Fortitude', 15, 6, 9, 'Trained Skills: From the class skills list below, choose three trained skills at 1st level. Class Skills: Athletics (Str), Endurance (Con), Heal (Wis), Intimidate (Cha), Streetwise (Cha)',
 E'Combat Challenge: In combat, it’s dangerous to ignore a fighter. Every time you attack an enemy, whether the attack hits or misses, you can choose to mark that target. The mark lasts until the end of your next turn. While a target is marked, it takes a –2 penalty to attack rolls for any attack that doesn’t include you as a target. A creature can be subject to only one mark at a time. A new mark supersedes a mark that was already in place. In addition, whenever a marked enemy that is adjacent to you shifts or makes an attack that does not include you, you can make a melee basic attack against that enemy as an immediate interrupt. \n Combat Superiority: You gain a bonus to opportunity attacks equal to your Wisdom modifier. An enemy struck by your opportunity attack stops moving, if a move provoked the attack. If it still has actions remaining, it can use them to resume moving. \n Fighter Weapon Talent: Choose either one-handed or two-handed weapons. When using a weapon of your chosen style, you gain a +1 bonus to attack rolls. ');
@@ -107,7 +109,7 @@ E'Combat Leader: You and each ally within 10 squares who can see and hear you ga
 INSERT INTO class (name, role, source, keystat, armor, weapon, implement, defense, starthp, levelhp, surge, skills, features)
 VALUES ('Wizard', 'Arcane', 'Controller', 'Intelligence, Wisdom, Dexterity', 'Cloth', 'Dagger, quarterstaff', 'Orbs, staffs, wands', '+2 Will', 10, 4, 6, 'Trained Skills: Arcana. From the class skills list below, choose three more trained skills at 1st level. Class Skills: Arcana (Int), Diplomacy (Cha), Dungeoneering (Wis), History (Int), Insight (Wis), Nature (Int), Religion (Int)',
 E'Arcane Implement Mastery: You specialize in the use of one kind of implement to gain additional abilities when you wield it. Choose one of the following forms of implement mastery. Orb of Imposition: Once per encounter as a free action, you can use your orb to gain one of the following two effects. You can designate one creature you have cast a wizard spell upon that has an effect that lasts until the subject succeeds on a saving throw. That creature takes a penalty to its saving throws against that effect equal to your Wisdom modifier. Alternatively, you can choose to extend the duration of an effect created by a wizard at-will spell (such as cloud of daggers or ray of frost) that would otherwise end at the end of your current turn. The effect instead ends at the end of your next turn. You must wield an orb to use this ability. Control wizards select this form of mastery because it helps extend the duration of their control effects. Staff of Defense: A staff of defense grants you a +1 bonus to AC. In addition, once per encounter as an immediate interrupt, you gain a bonus to defense against one attack equal to your Constitution modifier. You can declare the bonus after the Dungeon Master has already told you the damage total. You must wield your staff to benefit from these features. This form of mastery is useful for all wizards, particularly if you dabble in both control and damage-dealing spells. Wand of Accuracy: Once per encounter as a free action, you gain a bonus to a single attack roll equal to your Dexterity modifier. You must wield your wand to benefit from this feature. This form of mastery is good for war wizards because it helps increase their accuracy with damaging powers. \n Cantrips: Cantrips are minor spells you gain at 1st level. You can use the ghost sound, light, mage hand, and prestidigitation cantrips as at-will powers. \n Ritual Casting: You gain the Ritual Caster feat (page 200) as a bonus feat, allowing you to use magical rituals (see Chapter 10). \n Spellbook: You possess a spellbook, a book full of mystic lore in which you store your rituals and your daily and utility spells. Rituals: Your book contains three 1st-level rituals of your choice that you have mastered. At 5th level, and again at 11th, 15th, 21st, and 25th level, you master two more rituals of your choice and add them to your spellbook. Any ritual you add must be your level or lower. Daily and Utility Spells: Your spellbook also holds your daily and utility spells. You begin knowing two daily spells, one of which you can use on any given day. Each time you gain a level that lets you select a daily spell or a utility spell, choose two different daily spells or utility spells of that level to add to your book. After an extended rest, you can prepare a number of daily and utility spells according to what you can cast per day for your level. You can’t prepare the same spell twice. If you replace a spell because of gaining a level or through retraining, the previous spell vanishes from your spellbook and is replaced by the new spell. Capacity: A typical spellbook has 128 pages. Each spell takes up 1 page. A ritual takes up a number of pages equal to its level.');
-
+--END PLAYER HANDBOOK 1 CLASSES
 
 --
 -- Table Structure for Feats
@@ -128,6 +130,7 @@ CREATE TABLE feats (
 -- Table Dump for Feats
 --
 
+--PLAYER HANDBOOK 1 FEATS
 INSERT INTO feats (name, prereq, benefit) VALUES('Action Surge', 'Human', 'You gain a +3 bonus to attack rolls you make during any action you gained by spending an action point.');
 INSERT INTO feats (name, prereq, benefit) VALUES('Agile Hunter', 'Dex 15, ranger, Hunter’s Quarry class feature', 'When you score a critical hit with a melee attack against the target of your Hunter’s Quarry, you can shift as a free action, and the enemy takes a –2 penalty on attack rolls against you until the end of your next turn.');
 INSERT INTO feats (name, benefit) VALUES('Alertness', 'You don’t grant enemies combat advantage during surprise rounds. You also gain a +2 feat bonus to Perception checks.');
@@ -209,6 +212,7 @@ INSERT INTO feats (name, prereq, benefit) VALUES('Two-Weapon Fighting', 'Dex 13'
 INSERT INTO feats (name, benefit, special) VALUES('Weapon Focus', 'Choose a specific weapon group, such as spears or heavy blades. You gain a +1 feat bonus o damage rolls with your chosen weapon group. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.', 'You can take this feat more than once. Each time you select this feat, choose another weapon group.');
 INSERT INTO feats (name, benefit, special) VALUES('Weapon Proficiency', 'You gain proficiency in a single weapon of your choice', 'You can take this feat more than once. Each time you select this feat, choose another weapon.');
 INSERT INTO feats (name, benefit) VALUES('Wintertouched', 'When attacking a creature that is vulnerable to cold, you gain combat advantage when you use a power that has the cold keyword.');
+--END PLAYER HANDBOOK 1 FEATS
 
 --
 -- Table Structure for Powers
@@ -230,3 +234,15 @@ CREATE TABLE powers (
     special text, sustain text,
     PRIMARY KEY (ID)
 );
+
+--
+-- Table Dump for Powers
+--
+
+
+--PLAYER HANDBOOK ONE POWERS
+-- Bare minimum entry is still quite large, below line is a template for beginning power entries
+-- INSERT INTO powers (name, origin, level, flavor, encountertype, keywords, actiontype, range) VALUES ();
+INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, trigger, effect, special) VALUES ('Channel Divinity: Armor of Bahamut', 'Feat', 'Bahamut protects you or a friend from devastating harm.', 'Divine', 'Immediate Interrupt', 'Ranged 5', 'An enemy scores a critical hit on you or an ally', 'Turn a critical hit against you or an ally within range into a normal hit', 'You must take the Armor of Bahamut feat to use this power');
+
+--END PLAER HANDBOOK ONE POWERS

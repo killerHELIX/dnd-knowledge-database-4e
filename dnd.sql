@@ -118,7 +118,7 @@ E'Arcane Implement Mastery: You specialize in the use of one kind of implement t
 DROP TABLE IF EXISTS feats;
 CREATE TABLE feats (
     ID serial NOT NULL,
-    Tier varchar(20) NOT NULL default 'Heroic',
+    tier varchar(20) NOT NULL default 'Heroic',
     name varchar(50) NOT NULL default '',
     prereq text,
     benefit text NOT NULL default '',

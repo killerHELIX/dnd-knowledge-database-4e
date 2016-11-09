@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="dnd">
 
 <head>
 
@@ -31,7 +31,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
     
-    
+    <script src="static/js/userInputController.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -94,28 +94,23 @@
     </header>
     
     <section id="download" class="download bg-primary text-center"style="background:url(static/img/tableTexture.jpg); background-size: 100% auto">
-        <div class="container">
+        <div class="container" ng-controller="inputController">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2 class="section-heading">In order to gather the right information, we'll need some data from you.</h2>
                     <h1>Your character is a </h1>
                     
-                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-bind="level">
+                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedLevel">
                       <option>Level</option>
-                      {% for i in range (1, levels+1) %}
-                      <option>Level {{i}}</option>
-                      {% endfor %}
+                      <option ng-repeat="level in possibleLevels">{{ '{{level}}' }}</option>
                     </select>
                 
-                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-bind="race">
+                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedRace">
                       <option>Race</option>
-                      <option>Human</option>
-                      <option>Orc</option>
-                      <option>Shifter</option>
-                      <option>Genasi</option>
+                      <<option ng-repeat="race in possibleRaces">{{ '{{race}}' }}</option>
                     </select>
 
-                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-bind="class">
+                    <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedClass">
                       <option>Class</option>
                       <option>Fighter</option>
                       <option>Warlock</option>
@@ -123,6 +118,7 @@
                       <option>Rogue</option>
                     </select>
 
+                    <input type="submit" value="Go" class="btn btn-secondary">
                 </div>
             </div>
         </div>
@@ -274,7 +270,7 @@
     <!-- AngularJS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.4/socket.io.js"></script>
-    <script src="static/js/userInputController.js"></script>
+    
 
     
 

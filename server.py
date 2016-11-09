@@ -21,19 +21,31 @@ def connectToDB():
   except:
     print("Can't connect to database")
 
+conn = connectToDB()
+cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
+
+@socketio.on('connect')
+def makeConnection():
+  
+  query = "SELECT name FROM race;"
+  mog = cur.mogrify(query)
+  cur.execute(mog)
+  races = cur.fetchall()
+  print (races)
+  
+  emit ('updateInfo', races)
 
 @app.route('/', methods=['GET', 'POST'])
 def mainIndex():
   
-  conn = connectToDB()
-  cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
   method = request.method
   print (method)
   
-  maxLevels = 30
+  
     
-  return render_template('index.html', levels=maxLevels)
+  return render_template('index.html')
 
 # start the server
 if __name__ == '__main__':
-    app.run(host=os.getenv('IP', '0.0.0.0'), port =int(os.getenv('PORT', 8080)), debug=True)
+    socketio.run(app, host=os.getenv('IP', '0.0.0.0'), port =int(os.getenv('PORT', 8080)), debug=True)
+

@@ -6,6 +6,7 @@ dnd.controller('inputController', function($scope) {
     $scope.possibleLevels = [];
     $scope.possibleRaces = ['Human', 'Dragonborn', 'Dwarf', 'Eladrin', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling'];
     $scope.possibleClasses = ['Cleric', 'Fighter', 'Paladin', 'Ranger', 'Rogue', 'Warlock', 'Warlord', 'Wizard'];
+    $scope.statsEntered = false;
     
     $scope.selectedLevel = 'Level';
     $scope.selectedRace = 'Race';
@@ -19,6 +20,14 @@ dnd.controller('inputController', function($scope) {
         for(var i = 1; i <= 30; i++){
             $scope.possibleLevels.push(i);
         }
+    };
+    
+    $scope.getInfo = function(){
+        $scope.statsEntered = true;  
+        console.log($scope.statsEntered);
+        console.log($scope.selectedLevel);
+        console.log($scope.selectedRace);
+        console.log($scope.selectedClass);
     };
 
     socket.on('connect', function() {

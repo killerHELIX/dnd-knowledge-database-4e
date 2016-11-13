@@ -26,14 +26,7 @@ cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 @socketio.on('connect')
 def makeConnection():
-  
-  query = "SELECT name FROM race;"
-  mog = cur.mogrify(query)
-  cur.execute(mog)
-  races = cur.fetchall()
-  print (races)
-  
-  emit ('updateInfo', races)
+  print("Entered makeConnection on SERVER.PY")
 
 @app.route('/', methods=['GET', 'POST'])
 def mainIndex():

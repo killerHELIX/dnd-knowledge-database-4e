@@ -29,7 +29,7 @@
     
     <!-- bootstrap select styling -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">\
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
     
     <!-- AngularJS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
@@ -118,7 +118,7 @@
                       <option ng-repeat="class in possibleClasses">{{ '{{class}}' }}</option>
                     </select>
 
-                    <input type="submit" value="Go" class="btn btn-secondary">
+                    <input type="submit" value="Go" class="btn btn-secondary" ng-click="getInfo()">
                 </div>
             </div>
         </div>
@@ -135,7 +135,7 @@
                 </div>
             </div>
             
-            <h1>As a {{level}} {{race}} {{class}}, you receive the following starting stats:</h1>
+            <h1 ng-show='statsEntered'>As a {{selectedLevel}} {{selectedRace}} {{selectedClass}}, you receive the following starting stats:</h1>
             
             <table class="table table-hover">
                 <thead>

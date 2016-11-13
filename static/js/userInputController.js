@@ -5,7 +5,7 @@ dnd.controller('inputController', function($scope) {
     
     $scope.possibleLevels = [];
     $scope.possibleRaces = ['Human', 'Dragonborn', 'Dwarf', 'Eladrin', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling'];
-    $scope.possibleClasses = [];
+    $scope.possibleClasses = ['Cleric', 'Fighter', 'Paladin', 'Ranger', 'Rogue', 'Warlock', 'Warlord', 'Wizard'];
     
     $scope.selectedLevel = 'Level';
     $scope.selectedRace = 'Race';

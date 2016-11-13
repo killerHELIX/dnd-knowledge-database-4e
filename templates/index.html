@@ -29,8 +29,11 @@
     
     <!-- bootstrap select styling -->
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">\
     
+    <!-- AngularJS -->
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.4/socket.io.js"></script>
     <script src="static/js/userInputController.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -107,15 +110,12 @@
                 
                     <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedRace">
                       <option>Race</option>
-                      <<option ng-repeat="race in possibleRaces">{{ '{{race}}' }}</option>
+                      <option ng-repeat="race in possibleRaces">{{ '{{race}}' }}</option>
                     </select>
 
                     <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedClass">
                       <option>Class</option>
-                      <option>Fighter</option>
-                      <option>Warlock</option>
-                      <option>Wizard</option>
-                      <option>Rogue</option>
+                      <option ng-repeat="class in possibleClasses">{{ '{{class}}' }}</option>
                     </select>
 
                     <input type="submit" value="Go" class="btn btn-secondary">
@@ -267,9 +267,7 @@
     <script src="static/vendor/bootstrap-select-1.11.2/js/bootstrap-select.js"></script>
     <script src="static/vendor/bootstrap-select-1.11.2/js/i18n/defaults-en_US.js"></script>
     
-    <!-- AngularJS -->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.4/socket.io.js"></script>
+    
     
 
     

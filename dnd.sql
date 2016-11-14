@@ -246,3 +246,8 @@ CREATE TABLE powers (
 INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, trigger, effect, special) VALUES ('Channel Divinity: Armor of Bahamut', 'Feat', 'Bahamut protects you or a friend from devastating harm.', 'Divine', 'Immediate Interrupt', 'Ranged 5', 'An enemy scores a critical hit on you or an ally', 'Turn a critical hit against you or an ally within range into a normal hit', 'You must take the Armor of Bahamut feat to use this power');
 
 --END PLAER HANDBOOK ONE POWERS
+
+DROP ROLE IF EXISTS dnduser;
+CREATE USER dnduser;
+GRANT SELECT, INSERT ON class, feats, powers, race to dnduser;
+GRANT ALL ON class_id_seq, feats_id_seq, powers_id_seq, race_id_seq to dnduser;

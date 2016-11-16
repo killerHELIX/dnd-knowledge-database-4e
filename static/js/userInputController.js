@@ -3,6 +3,8 @@ var dnd = angular.module('dnd', ['ngSanitize']);
 dnd.controller('inputController', function($scope, $sce) {
     var socket = io.connect('https://' + document.domain + ':' + location.port);
     
+    $scope.loggedIn = false;
+    
     $scope.possibleLevels = [];
     $scope.possibleRaces = ['Human', 'Dragonborn', 'Dwarf', 'Eladrin', 'Elf', 'Half-Elf', 'Halfling', 'Tiefling'];
     $scope.possibleClasses = ['Cleric', 'Fighter', 'Paladin', 'Ranger', 'Rogue', 'Warlock', 'Warlord', 'Wizard'];
@@ -15,6 +17,7 @@ dnd.controller('inputController', function($scope, $sce) {
     $scope.classInfo = [];
     $scope.raceInfo = [];
     $scope.features = "";
+
     
     socket.on('updateClassInfo', function(Class) {
        console.log('Entering updateInfo in USERINPUTCONTROLLER.JS');
@@ -25,8 +28,6 @@ dnd.controller('inputController', function($scope, $sce) {
        $scope.features = $sce.trustAsHtml($scope.classInfo[0].features);
        console.log($scope.features);
        $scope.$apply();
-       
-       document.getElementById("go").href = "#features";
        
     });
 
@@ -55,6 +56,18 @@ dnd.controller('inputController', function($scope, $sce) {
             console.log($scope.selectedLevel);
             console.log($scope.selectedRace);
             console.log($scope.selectedClass);
+        }
+        
+    };
+    
+    $scope.login = function(){
+        console.log("Entered login on CONTROLLER.JS");
+        console.log($scope.username + " " + $scope.password);
+        if ($scope.username != null && $scope.password != null){
+            $scope.loggedIn = true;
+            socket.emit('login', $scope.username, $scope.password);
+        } else {
+            console.log("Username or password are null.");
         }
         
     };

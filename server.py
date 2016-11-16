@@ -14,7 +14,7 @@ sys.setdefaultencoding('utf8')
 socketio = SocketIO(app)
 
 def connectToDB():
-  connectionString = 'dbname=dungeons user=postgres password=postgres host=localhost'
+  connectionString = 'dbname=dungeons user=dnduser password=dnd host=localhost'
   print connectionString
   try:
     return psycopg2.connect(connectionString)

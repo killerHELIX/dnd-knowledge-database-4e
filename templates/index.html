@@ -68,7 +68,8 @@
                         <a class="page-scroll" href="#features">Details</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#modal" data-toggle="modal" data-target="#login">Login</a>
+                        <a class="page-scroll" href="#modal" data-toggle="modal" data-target="#login" ng-show="!loggedIn">Login</a>
+                        <a class="page-scroll" ng-show="loggedIn" ng-bind="username"></a>
                     </li>
                 </ul>
             </div>
@@ -144,11 +145,11 @@
                             <th>Name</th>
                             <th>Role</th>
                             <th>Source</th>
-                            <th>Keystat</th>
-                            <th>Armor</th>
-                            <th>Weapon</th>
-                            <th>Implement</th>
-                            <th>Defense</th>
+                            <th>Key Abilities</th>
+                            <th>Armor Proficiencies</th>
+                            <th>Weapon Proficiencies</th>
+                            <th>Implements</th>
+                            <th>Bonus to Defense</th>
                             <th>Starting HP</th>
                             <th>HP per Level</th>
                             <th>Surge</th>
@@ -183,46 +184,6 @@
                     </tbody>
                 </table>
             </div>
-
-            <!--<div class="row">-->
-            <!--    <div class="col-lg-8 text-center" style="position: center">-->
-            <!--        <div class="container-fluid">-->
-            <!--            <div class="row">-->
-            <!--                <div class="col-md-6">-->
-            <!--                    <div class="feature-item">-->
-            <!--                        <i class="icon-screen-smartphone text-primary"></i>-->
-            <!--                        <h3>iPhones</h3>-->
-            <!--                        <p class="text-muted">They make nice icons!</p>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="col-md-6">-->
-            <!--                    <div class="feature-item">-->
-            <!--                        <i class="icon-camera text-primary"></i>-->
-            <!--                        <h3>Cameras</h3>-->
-            <!--                        <p class="text-muted">A blast to the past!</p>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--            <div class="row">-->
-            <!--                <div class="col-md-6">-->
-            <!--                    <div class="feature-item">-->
-            <!--                        <i class="icon-present text-primary"></i>-->
-            <!--                        <h3>Presents</h3>-->
-            <!--                        <p class="text-muted">You'll never receive any!</p>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--                <div class="col-md-6">-->
-            <!--                    <div class="feature-item">-->
-            <!--                        <i class="icon-lock-open text-primary"></i>-->
-            <!--                        <h3>Locks</h3>-->
-            <!--                        <p class="text-muted">Locks have now become digital! Neat!</p>-->
-            <!--                    </div>-->
-            <!--                </div>-->
-            <!--            </div>-->
-            <!--        </div>-->
-            <!--    </div>-->
-            <!--</div>-->
-
     </section>
 
     <div class="cta modal fade" id="login" style="width: 50%; margin: auto">
@@ -233,8 +194,8 @@
                 <h4>Logging in allows you to save specific character information for later use!</h4><br>
                 <div class="form-group" style="text-align: center">
                     <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="username" placeholder="Username">
-                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="password" placeholder="Password">
-                    <input type="button" class="btn btn-primary" ng-click="login(username, password)" value="Login">
+                    <input style="width: 25%; display: inline" type="password" class="form-control centeredInput" ng-model="password" placeholder="Password">
+                    <input type="button" class="btn btn-primary" ng-click="login()" value="Login" data-dismiss="modal">
                 </div>
             </div>
         </div>
@@ -246,7 +207,7 @@
             <h2>Something wrong or incorrect? Let us know!</h2>
             <ul class="list-inline list-social">
                 <li class="social-twitter">
-                    <a href="http://twitter.com"><i class="fa fa-twitter"></i></a>
+                    <a href="https://twitter.com/@usidoretheblue"><i class="fa fa-twitter"></i></a>
                 </li>
                 <li class="social-facebook">
                     <a href="http://facebook.com"><i class="fa fa-facebook"></i></a>
@@ -288,7 +249,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
     <!-- Theme JavaScript -->
-    <script src="static/js/new-age.min.js"></script>
+    <script src="static/js/new-age.js"></script>
 
     <!-- bootstrap select scripts-->
     <script src="static/vendor/bootstrap-select-1.11.2/js/bootstrap-select.js"></script>

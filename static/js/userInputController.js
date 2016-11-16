@@ -26,6 +26,8 @@ dnd.controller('inputController', function($scope, $sce) {
        console.log($scope.features);
        $scope.$apply();
        
+       document.getElementById("go").href = "#features";
+       
     });
 
 

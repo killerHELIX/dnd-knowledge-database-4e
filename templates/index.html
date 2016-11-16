@@ -119,7 +119,7 @@
                       <option ng-repeat="class in possibleClasses">{{ '{{class}}' }}</option>
                     </select>
 
-                    <input type="submit" value="Go" class="btn btn-secondary" ng-click="getInfo()">
+                    <a href = "#features" id="go" class="btn btn-primary page-scroll" ng-click="getInfo()">Go</a>
                 </div>
             </div>
         </div>
@@ -149,8 +149,8 @@
                             <th>Weapon</th>
                             <th>Implement</th>
                             <th>Defense</th>
-                            <th>Start HP</th>
-                            <th>Level HP</th>
+                            <th>Starting HP</th>
+                            <th>HP per Level</th>
                             <th>Surge</th>
                         </tr>
                     </thead>
@@ -178,9 +178,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>
-                                <p ng-bind-html="features"></p>
-                            </td>
+                            <td ng-bind-html="features"></td>
                         </tr>
                     </tbody>
                 </table>

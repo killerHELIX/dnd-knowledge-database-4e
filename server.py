@@ -24,6 +24,27 @@ def connectToDB():
 conn = connectToDB()
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
+@socketio.on('getInfo')
+def getInfo(Level, Race, Class):
+  print("Entered getInfo on SERVER.PY")
+  
+  # get class info
+  query = "SELECT * FROM class WHERE name = %s;"
+  mog = cur.mogrify(query, [Class])
+  print(mog)
+  
+  cur.execute(mog)
+  classInfo = cur.fetchall()
+  print(classInfo)
+  
+  for Class in classInfo:
+    newClass = {'name':Class['name'], 'role':Class['role'], 'source':Class['source'], 
+    'keystat':Class['keystat'], 'armor':Class['armor'], 'weapon':Class['weapon'], 'implement':Class['implement'], 
+    'defense':Class['defense'], 'starthp':Class['starthp'], 'levelhp':Class['levelhp'], 'surge':Class['surge'],
+    'skills':Class['skills'], 'features':Class['features']}
+    
+    emit('updateClassInfo', newClass)
+
 @socketio.on('connect')
 def makeConnection():
   print("Entered makeConnection on SERVER.PY")
@@ -33,8 +54,6 @@ def mainIndex():
   
   method = request.method
   print (method)
-  
-  
     
   return render_template('index.html')
 

@@ -1,6 +1,6 @@
-var dnd = angular.module('dnd', []);
+var dnd = angular.module('dnd', ['ngSanitize']);
 
-dnd.controller('inputController', function($scope) {
+dnd.controller('inputController', function($scope, $sce) {
     var socket = io.connect('https://' + document.domain + ':' + location.port);
     
     $scope.possibleLevels = [];
@@ -12,9 +12,22 @@ dnd.controller('inputController', function($scope) {
     $scope.selectedRace = 'Race';
     $scope.selectedClass = 'Class';
     
-    socket.on('updateInfo', function(race) {
+    $scope.classInfo = [];
+    $scope.raceInfo = [];
+    $scope.features = "";
+    
+    socket.on('updateClassInfo', function(Class) {
        console.log('Entering updateInfo in USERINPUTCONTROLLER.JS');
+       console.log(Class);
+       $scope.classInfo.push(Class);
+       $scope.$apply();
+       console.log($scope.classInfo[0].features);
+       $scope.features = $sce.trustAsHtml($scope.classInfo[0].features);
+       console.log($scope.features);
+       $scope.$apply();
+       
     });
+
 
     $scope.initLevels = function(){
         for(var i = 1; i <= 30; i++){
@@ -23,11 +36,25 @@ dnd.controller('inputController', function($scope) {
     };
     
     $scope.getInfo = function(){
-        $scope.statsEntered = true;  
-        console.log($scope.statsEntered);
-        console.log($scope.selectedLevel);
-        console.log($scope.selectedRace);
-        console.log($scope.selectedClass);
+        
+        if ($scope.selectedLevel == "Level" || $scope.selectedRace == "Race" || $scope.selectedClass == "Class") {
+            console.log("Missing an input value! (Level, race, or class)");
+        } else {
+            $scope.statsEntered = true;  
+            
+            // clear the info lists
+            $scope.raceInfo = [];
+            $scope.classInfo = [];
+            
+            socket.emit('getInfo', $scope.selectedLevel, $scope.selectedRace, $scope.selectedClass);
+            
+            console.log($scope.statsEntered);
+            console.log("Sent: ");
+            console.log($scope.selectedLevel);
+            console.log($scope.selectedRace);
+            console.log($scope.selectedClass);
+        }
+        
     };
 
     socket.on('connect', function() {

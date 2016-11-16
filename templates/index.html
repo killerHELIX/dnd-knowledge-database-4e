@@ -26,13 +26,14 @@
 
     <!-- Theme CSS -->
     <link href="static/css/new-age.css" rel="stylesheet">
-    
+
     <!-- bootstrap select styling -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.2/css/bootstrap-select.min.css">
-    
+
     <!-- AngularJS -->
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-sanitize.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.4/socket.io.js"></script>
     <script src="static/js/userInputController.js"></script>
 
@@ -45,7 +46,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" ng-controller="inputController">
 
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -95,19 +96,19 @@
             </div>
         </div>
     </header>
-    
-    <section id="download" class="download bg-primary text-center"style="background:url(static/img/tableTexture.jpg); background-size: 100% auto">
-        <div class="container" ng-controller="inputController">
+
+    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto">
+        <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2 class="section-heading">In order to gather the right information, we'll need some data from you.</h2>
                     <h1>Your character is a </h1>
-                    
+
                     <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedLevel">
                       <option>Level</option>
                       <option ng-repeat="level in possibleLevels">{{ '{{level}}' }}</option>
                     </select>
-                
+
                     <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedRace">
                       <option>Race</option>
                       <option ng-repeat="race in possibleRaces">{{ '{{race}}' }}</option>
@@ -124,7 +125,7 @@
         </div>
     </section>
 
-    <section id="features" class="features">
+    <section id="features" class="features" ng-show='statsEntered'>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -134,36 +135,57 @@
                     </div>
                 </div>
             </div>
-            
-            <h1 ng-show='statsEntered'>As a {{selectedLevel}} {{selectedRace}} {{selectedClass}}, you receive the following starting stats:</h1>
-            
-            <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th>Health</th>
-                    <th>Implements</th>
-                    <th>Main Stat</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>12</td>
-                    <td>Orb</td>
-                    <td>Intelligence</td>
-                  </tr>
-                  <tr>
-                    <td>30</td>
-                    <td>Broadsword</td>
-                    <td>Strength</td>
-                  </tr>
-                  <tr>
-                    <td>15</td>
-                    <td>Dagger</td>
-                    <td>Dexterity</td>
-                  </tr>
-                </tbody>
-              </table>
-            
+
+            <span>As a Level {{ '{{selectedLevel}}' }} {{ '{{selectedRace}}' }} {{ '{{selectedClass}}' }}, you receive the following starting stats:</span>
+            <div ng-class="ng-scope">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Role</th>
+                            <th>Source</th>
+                            <th>Keystat</th>
+                            <th>Armor</th>
+                            <th>Weapon</th>
+                            <th>Implement</th>
+                            <th>Defense</th>
+                            <th>Start HP</th>
+                            <th>Level HP</th>
+                            <th>Surge</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td ng-bind="classInfo[0].name"></td>
+                            <td ng-bind="classInfo[0].role"></td>
+                            <td ng-bind="classInfo[0].source"></td>
+                            <td ng-bind="classInfo[0].keystat"></td>
+                            <td ng-bind="classInfo[0].armor"></td>
+                            <td ng-bind="classInfo[0].weapon"></td>
+                            <td ng-bind="classInfo[0].implement"></td>
+                            <td ng-bind="classInfo[0].defense"></td>
+                            <td ng-bind="classInfo[0].starthp"></td>
+                            <td ng-bind="classInfo[0].levelhp"></td>
+                            <td ng-bind="classInfo[0].surge"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <p ng-bind-html="features"></p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
             <!--<div class="row">-->
             <!--    <div class="col-lg-8 text-center" style="position: center">-->
             <!--        <div class="container-fluid">-->
@@ -202,17 +224,15 @@
             <!--        </div>-->
             <!--    </div>-->
             <!--</div>-->
-            
+
     </section>
 
     <div class="cta modal fade" id="login" style="width: 50%; margin: auto">
         <div class="modal-content">
-            <div class="modal-header" style="text-align: center">
+            <div class="modal-body">
                 <button class="close" data-dismiss="modal">&times;</button>
                 <h2 class="modal-title">Login</h2>
-                <h4>Logging in allows you to save specific character information for later use!</h4>
-            </div>
-            <div class="modal-body">
+                <h4>Logging in allows you to save specific character information for later use!</h4><br>
                 <div class="form-group" style="text-align: center">
                     <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="username" placeholder="Username">
                     <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="password" placeholder="Password">
@@ -271,15 +291,15 @@
 
     <!-- Theme JavaScript -->
     <script src="static/js/new-age.min.js"></script>
-    
+
     <!-- bootstrap select scripts-->
     <script src="static/vendor/bootstrap-select-1.11.2/js/bootstrap-select.js"></script>
     <script src="static/vendor/bootstrap-select-1.11.2/js/i18n/defaults-en_US.js"></script>
-    
-    
-    
 
-    
+
+
+
+
 
 
 </body>

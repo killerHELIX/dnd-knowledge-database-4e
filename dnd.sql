@@ -70,7 +70,7 @@ CREATE TABLE class (
     keystat varchar(50) NOT NULL default '',
     armor varchar(80) NOT NULL default '',
     weapon varchar(150) NOT NULL default '',
-    implement varchar(50),
+    implement varchar(50) NOT NULL default 'None',
     defense varchar(50) NOT NULL default '',
     starthp integer NOT NULL default '0',
     levelhp integer NOT NULL default '0',
@@ -243,11 +243,21 @@ CREATE TABLE powers (
 --PLAYER HANDBOOK ONE POWERS
 -- Bare minimum entry is still quite large, below line is a template for beginning power entries
 -- INSERT INTO powers (name, origin, level, flavor, encountertype, keywords, actiontype, range) VALUES ();
-INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, trigger, effect, special) VALUES ('Channel Divinity: Armor of Bahamut', 'Feat', 'Bahamut protects you or a friend from devastating harm.', 'Divine', 'Immediate Interrupt', 'Ranged 5', 'An enemy scores a critical hit on you or an ally', 'Turn a critical hit against you or an ally within range into a normal hit', 'You must take the Armor of Bahamut feat to use this power');
+INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, trigger, effect, special) 
+VALUES ('Channel Divinity: Armor of Bahamut', 'Feat', 'Bahamut protects you or a friend from devastating harm.', 'Divine', 'Immediate Interrupt', 'Ranged 5', 'An enemy scores a critical hit on you or an ally', 'Turn a critical hit against you or an ally within range into a normal hit', 'You must take the Armor of Bahamut feat to use this power');
+INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, effect, special) 
+VALUES ('Channel Divinity: Avandra''s Rescue','Feat', 'Avandra smiles upon you and helps you rescue a friend in need.', 'Divine', 'Move Action', 'Melee 1', 'One Ally', 'Shift into the space of an adjecent ally; that ally simultaneously shifts into your space. Your space and your ally''s spaces must be the same size.', 'You must take the Avandra''s Rescue feat to use this power');
+INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, trigger, effect, special) 
+VALUES ('Channel Divinity: Corellon''s Grace', )
+
+
+
 
 --END PLAER HANDBOOK ONE POWERS
 
 DROP ROLE IF EXISTS dnduser;
 CREATE USER dnduser;
+--Enter "dnd" without quotes when prompted 
+\password dnduser
 GRANT SELECT, INSERT ON class, feats, powers, race to dnduser;
 GRANT ALL ON class_id_seq, feats_id_seq, powers_id_seq, race_id_seq to dnduser;

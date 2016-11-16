@@ -7,6 +7,24 @@ INSTALLATION INSTRUCTIONS
 
 [RYAN, PLEASE PLACE WEBDEV SETUP INSTRUCTIONS HERE, WE NEED THEM FOR THE SPRINT. INCLUDE GIT CLONE LINE TO ENSURE THAT USER HAS THE SAME SET UP AS US.]
 
+# Clone from the repository:
+    git clone git@github.com:killerHELIX/dnd-knowledge-database-4e.git
+    
+# A couple of commands to run in your terminal:
+    Get Python Flask:
+        sudo easy_install flask markdown
+        
+    Get Psycopg2:
+        sudo apt-get update
+        sudo apt-get install python-psycopg2
+        
+    Get password hashing capability for postgres:
+        sudo apt-get install postgresql-contrib-9.3
+        
+    Get flask-socketio:
+        sudo easy_install flask-socketio
+
+
 #. Starting Postgres Server
     If your sql server is not currently running, execute the following line in your terminal.
     

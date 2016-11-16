@@ -248,7 +248,15 @@ VALUES ('Channel Divinity: Armor of Bahamut', 'Feat', 'Bahamut protects you or a
 INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, effect, special) 
 VALUES ('Channel Divinity: Avandra''s Rescue','Feat', 'Avandra smiles upon you and helps you rescue a friend in need.', 'Divine', 'Move Action', 'Melee 1', 'One Ally', 'Shift into the space of an adjecent ally; that ally simultaneously shifts into your space. Your space and your ally''s spaces must be the same size.', 'You must take the Avandra''s Rescue feat to use this power');
 INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, trigger, effect, special) 
-VALUES ('Channel Divinity: Corellon''s Grace', )
+VALUES ('Channel Divinity: Corellon''s Grace', 'Feat', 'Corellon''s grace allows you to move when others take action', 'Divine', 'Immediate Interrupt', 'Ranged 10', 'A creature within range tspends an action point to take an extra action.', 'You take a move action', 'You must take the Corellon''s Grace feat to use this power');
+INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, effect, special) 
+VALUES ('Channel Divinity: Harmony of Erathis','Feat', 'Erathis brings harmony of purpose to like-minded allies', 'Divine', 'Minor Action', 'Melee 1', 'One Ally', 'If you have at least three allies within range, grant one of those allies a +2 power bonus to the first attack roll he or she makes before the start of your next turn.', 'You must take the Harmony of Erathis feat to use this power');
+INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, effect, special) 
+VALUES ('Channel Divinity: Ioun''s Poise','Feat', 'Ioun grants strength of will to those she favors', 'Divine', 'Minor Action', 'Ranged 5', 'You or one Ally', 'The target gains a +5 power bonus to will defense until the start of your next turn.', 'You must take the Ioun''s Poise feat to use this power');
+INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, trigger, effect, special) 
+VALUES ('Channel Divinity: Kord''s Favor', 'Feat', 'Kord favors a strong hit in vombat with healing.', 'Divine, Healing', 'Free Action', 'Ranged 5', 'You or an ally scores a critical hit with a melee attack.', 'You or the ally can spend a healing surge', 'You must take the Kord''s Favor feat to use this power');
+INSERT INTO powers (name, origin, flavor, keywords, actiontype, range, effect, special) 
+VALUES ('Channel Divinity: Melora''s Tide','Feat', 'Melora sends a tide of healing energy to aid you or a bloodied friend.', 'Divine, Healing', 'Minor Action', 'Ranged 5', 'You or one Ally; bloodied target only', 'The target gains regeneration 2, per tier, until the end of the encounter or until he or she is no longer bloodied.', 'You must take the Melora''s Tide feat to use this power');
 
 
 

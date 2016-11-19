@@ -24,7 +24,7 @@ CREATE TABLE "class" (
 ) WITH (
   OIDS=FALSE
 );
-
+--------------------------------------------------------------------------------
 CREATE TABLE "race" (
 	"name" TEXT NOT NULL,
 	"skill" TEXT NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE "race" (
 ) WITH (
   OIDS=FALSE
 );
-
+--------------------------------------------------------------------------------
 CREATE TABLE "powers" (
 	"name" TEXT NOT NULL,
 	"origin" TEXT NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE "powers" (
 ) WITH (
   OIDS=FALSE
 );
-
+--------------------------------------------------------------------------------
 CREATE TABLE "feats" (
 	"name" serial NOT NULL,
 	"benefit" TEXT NOT NULL,
@@ -96,7 +96,7 @@ CREATE TABLE "feats" (
 ) WITH (
   OIDS=FALSE
 );
-
+--------------------------------------------------------------------------------
 CREATE TABLE "users" (
 	"username" varchar(20) NOT NULL,
 	"password" varchar(20) NOT NULL,
@@ -105,7 +105,7 @@ CREATE TABLE "users" (
 ) WITH (
   OIDS=FALSE
 );
-
+--------------------------------------------------------------------------------
 CREATE TABLE "character" (
 	"id" serial NOT NULL,
 	"name" TEXT NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE "character" (
 ) WITH (
   OIDS=FALSE
 );
-
+--------------------------------------------------------------------------------
 CREATE TABLE "books" (
 	"book" TEXT NOT NULL,
 	"book_name" TEXT NOT NULL,
@@ -147,7 +147,7 @@ CREATE TABLE "books" (
 ) WITH (
   OIDS=FALSE
 );
-
+--------------------------------------------------------------------------------
 ALTER TABLE "class" ADD CONSTRAINT "class_fk0" FOREIGN KEY ("name") REFERENCES "character"("class");
 ALTER TABLE "class" ADD CONSTRAINT "class_fk1" FOREIGN KEY ("source") REFERENCES "character"("source");
 ALTER TABLE "class" ADD CONSTRAINT "class_fk3" FOREIGN KEY ("armor") REFERENCES "character"("armor_proficiency");
@@ -225,7 +225,7 @@ VALUES ('Tiefling', '+2 Charisma, +2 Intelligence', 'Low-Light', 'Common, Choice
 -- Table Dump for Feats
 --
 -- PLAYER HANDBOOK 1 FEATS
-INSERT INTO feats (name, benefit,) VALUES('Action Surge', 'Human', 'You gain a +3 bonus to attack rolls you make during any action you gained by spending an action point.');
+INSERT INTO feats (name, benefit, race) VALUES('Action Surge', 'You gain a +3 bonus to attack rolls you make during any action you gained by spending an action point.', 'Human');
 INSERT INTO feats (name, benefit,) VALUES('Agile Hunter', 'Dex 15, ranger, Hunter’s Quarry class feature', 'When you score a critical hit with a melee attack against the target of your Hunter’s Quarry, you can shift as a free action, and the enemy takes a –2 penalty on attack rolls against you until the end of your next turn.');
 INSERT INTO feats (name, benefit) VALUES('Alertness', 'You don’t grant enemies combat advantage during surprise rounds. You also gain a +2 feat bonus to Perception checks.');
 INSERT INTO feats (name, benefit,) VALUES('Armor of Bahamut', 'Channel Divinity class feature, must worship Bahamut', 'You can invoke the power of your deity to use armor of Bahamut. [Power]');
@@ -306,5 +306,3 @@ INSERT INTO feats (name, benefit,) VALUES('Two-Weapon Fighting', 'Dex 13', 'Whil
 INSERT INTO feats (name, benefit, special) VALUES('Weapon Focus', 'Choose a specific weapon group, such as spears or heavy blades. You gain a +1 feat bonus o damage rolls with your chosen weapon group. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.', 'You can take this feat more than once. Each time you select this feat, choose another weapon group.');
 INSERT INTO feats (name, benefit, special) VALUES('Weapon Proficiency', 'You gain proficiency in a single weapon of your choice', 'You can take this feat more than once. Each time you select this feat, choose another weapon.');
 INSERT INTO feats (name, benefit) VALUES('Wintertouched', 'When attacking a creature that is vulnerable to cold, you gain combat advantage when you use a power that has the cold keyword.');
-
-

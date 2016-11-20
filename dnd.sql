@@ -93,6 +93,8 @@ CREATE TABLE "feats" (
 	"feat" TEXT,
 	"god" TEXT,
 	"armor_proficiency" TEXT,
+	"book" TEXT NOT NULL DEFAULT 'PHB1',
+	"nopres" BOOLEAN NOT NULL DEFAULT false,
 	CONSTRAINT feats_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=false
@@ -221,11 +223,11 @@ VALUES ('Tiefling', '+2 Charisma, +2 Intelligence', 'Low-Light', 'Common, Choice
 -- PLAYER HANDBOOK 1 FEATS
 INSERT INTO feats (name, benefit, race) VALUES('Action Surge', 'You gain a +3 bonus to attack rolls you make during any action you gained by spending an action point.', 'Human');
 INSERT INTO feats (name, benefit, dex, class) VALUES('Agile Hunter', 'When you score a critical hit with a melee attack against the target of your Hunter’s Quarry, you can shift as a free action, and the enemy takes a –2 penalty on attack rolls against you until the end of your next turn.', 15, 'Ranger');
-INSERT INTO feats (name, benefit) VALUES('Alertness', 'You don’t grant enemies combat advantage during surprise rounds. You also gain a +2 feat bonus to Perception checks.');
+INSERT INTO feats (name, benefit, nopres) VALUES('Alertness', 'You don’t grant enemies combat advantage during surprise rounds. You also gain a +2 feat bonus to Perception checks.', true);
 INSERT INTO feats (name, benefit, god) VALUES('Armor of Bahamut', 'You can invoke the power of your deity to use armor of Bahamut. [Power]', 'Bahamut');
 INSERT INTO feats (name, benefit, str, con, armor_proficiency) VALUES('Armor Proficiency (Chainmail)', 'You gain training with chainmail.', 13, 13, 'leather');
 INSERT INTO feats (name, benefit, str, con, armor_proficiency) VALUES('Armor Proficiency (Hide)', 'You gain training with hide.', 13, 13, 'leather');
-INSERT INTO feats (name, benefit) VALUES('Armor Proficiency (Leather)', 'You gain training with leather.');
+INSERT INTO feats (name, benefit, nopres) VALUES('Armor Proficiency (Leather)', 'You gain training with leather.', true);
 INSERT INTO feats (name, benefit, str, con, armor_proficiency) VALUES('Armor Proficiency (Scale)', 'You gain training with scale.', 13, 13, 'chainmail');
 INSERT INTO feats (name, benefit, str, con, armor_proficiency) VALUES('Armor Proficiency (Plate)', 'You gain training with plate.', 15, 15, 'scale');
 INSERT INTO feats (name, benefit, dex, cha) VALUES('Astral Fire', 'You gain a +1 feat bonus to damage rolls when you use a power that has the fire or radiant keyword. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.', 13, 13);
@@ -236,12 +238,12 @@ INSERT INTO feats (name, benefit, int, wis) VALUES('Burning Blizzard', 'You gain
 INSERT INTO feats (name, benefit, dex) VALUES('Combat Reflexes', 'You gain a +1 bonus to opportunity attack rolls.', 13);
 INSERT INTO feats (name, benefit, god) VALUES('Corellon''s Grace', 'You can invoke the power of your deity to use Corellon''s grace. [Power]', 'Corellon');
 INSERT INTO feats (name, benefit, con, wis) VALUES('Dark Fury', 'You gain a +1 feat bonus to damage rolls when you use a power that has the necrotic or psychic keyword. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.', 13, 13);
-INSERT INTO feats (name, benefit) VALUES('Defensive Mobility', 'You gain a +2 bonus to AC against opportunity attacks.');
+INSERT INTO feats (name, benefit, nopres) VALUES('Defensive Mobility', 'You gain a +2 bonus to AC against opportunity attacks.', true);
 INSERT INTO feats (name, benefit, special, wis, class) VALUES('Distracting Shield', 'If you hit a foe with an attack granted by your Combat Challenge class feature, the target takes a –2 penalty to attack rolls until the start of your next turn.', 'You must have a shield equipped to benefit from this feat.', 15, 'Fighter');
 INSERT INTO feats (name, race, benefit) VALUES('Dodge Giants', 'Dwarf', 'You gain a +1 bonus to AC and Reflex defense against the attacks of Large or larger foes.');
 INSERT INTO feats (name, race, benefit) VALUES('Dragonborn Frenzy', 'Dragonborn', 'While you are bloodied, you gain a +2 bonus to damage rolls.');
 INSERT INTO feats (name, race, benefit) VALUES('Dragonborn Senses', 'Dragonborn', 'You gain low-light vision. You gain a +1 feat bonus to Perception checks.');
-INSERT INTO feats (name, benefit) VALUES('Durable', 'Increase your number of healing surges by two');
+INSERT INTO feats (name, benefit, nopres) VALUES('Durable', 'Increase your number of healing surges by two', true);
 INSERT INTO feats (name, race, benefit) VALUES('Dwarven Weapon Training', 'Dwarf', 'You gain proficiency and a +2 feat bonus to damage rolls with axes and hammers.');
 INSERT INTO feats (name, race, benefit) VALUES('Eladrin Soldier', 'Eladrin', 'You gain proficiency with all spears and a +2 feat bonus to damage rolls with longswords and all spears.');
 INSERT INTO feats (name, race, benefit) VALUES('Elven Precision', 'Elf, elven accuracy racial power', 'When you use the elven accuracy power, you gain a +2 bonus to the new attack roll.');
@@ -300,7 +302,7 @@ INSERT INTO feats (name, dex, feat, benefit) VALUES('Two-Weapon Defense', 13, 'T
 INSERT INTO feats (name, dex, benefit) VALUES('Two-Weapon Fighting', 13, 'While holding a melee weapon in each hand, you gain a +1 bonus to damage rolls with your main weapon.');
 INSERT INTO feats (name, benefit, special) VALUES('Weapon Focus', 'Choose a specific weapon group, such as spears or heavy blades. You gain a +1 feat bonus o damage rolls with your chosen weapon group. At 11th level, this bonus increases to +2. At 21st level, it increases to +3.', 'You can take this feat more than once. Each time you select this feat, choose another weapon group.');
 INSERT INTO feats (name, benefit, special) VALUES('Weapon Proficiency', 'You gain proficiency in a single weapon of your choice', 'You can take this feat more than once. Each time you select this feat, choose another weapon.');
-INSERT INTO feats (name, benefit) VALUES('Wintertouched', 'When attacking a creature that is vulnerable to cold, you gain combat advantage when you use a power that has the cold keyword.');
+INSERT INTO feats (name, benefit, nopres) VALUES('Wintertouched', 'When attacking a creature that is vulnerable to cold, you gain combat advantage when you use a power that has the cold keyword.', true);
 
 
 --PLAYER HANDBOOK ONE POWERS

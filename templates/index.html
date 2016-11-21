@@ -10,6 +10,9 @@
     <meta name="author" content="">
 
     <title>Dungeons and Dragons 4th Edition Knowledge Database</title>
+    <link rel="icon"
+    type="image/png"
+    href="static/img/icon.png"
 
     <!-- Bootstrap Core CSS -->
     <link href="static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -98,11 +101,12 @@
         </div>
     </header>
 
-    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto">
+    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto"  ng-show="!statsEntered">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2 class="section-heading">In order to gather the right information, we'll need some data from you.</h2>
+                    
                     <h1>Your character is a </h1>
 
                     <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedLevel">
@@ -120,13 +124,38 @@
                       <option ng-repeat="class in possibleClasses">{{ '{{class}}' }}</option>
                     </select>
 
-                    <a href = "#features" id="go" class="btn btn-primary page-scroll" ng-click="getInfo()">Go</a>
+                    <a href = "#stats" id="go" class="btn btn-primary page-scroll" ng-click="getInfo()">Go</a>
                 </div>
             </div>
         </div>
     </section>
+    
+    <section id="stats" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="statsEntered">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2 class="section-heading">Almost done.  All we need now are some stats to get things you're actually able to use.</h2>
+                
+                <a href = "#download" id="go" class="btn btn-primary page-scroll" ng-click="resetStats()">Back</a>
+                
+                <h1>You can distribute a standard array (15, 14, 13, 12, 10, 8) or enter any values you'd like.</h1>
+                
+                <div class="form-group" style="text-align: center; margin: auto">
+                    <input style="width: 25%; display: inline; margin: auto" type="input" class="form-control centeredInput" ng-model="str" placeholder="Strength"><br>
+                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="con" placeholder="Constitution"><br>
+                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="dex" placeholder="Dexterity"><br>
+                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="int" placeholder="Intelligence"><br>                    
+                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="wis" placeholder="Wisdom"><br>
+                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="cha" placeholder="Charisma"><br>
+                </div>
+                
+                <a href = "#stats" id="go" class="btn btn-primary page-scroll" ng-click="getInfo()">Go</a>
+            </div>
+        </div>
+    </div>
+</section>
 
-    <section id="features" class="features" ng-show='statsEntered'>
+    <section id="features" class="features" ng-show='statsReady'>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">

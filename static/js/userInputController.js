@@ -60,6 +60,10 @@ dnd.controller('inputController', function($scope, $sce) {
         
     };
     
+    $scope.resetStats = function(){
+        $scope.statsEntered = false;
+    }
+    
     $scope.login = function(){
         console.log("Entered login on CONTROLLER.JS");
         console.log($scope.username + " " + $scope.password);

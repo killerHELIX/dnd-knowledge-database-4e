@@ -103,7 +103,7 @@ CREATE TABLE "feats" (
 CREATE TABLE "users" (
 	"username" varchar(20) NOT NULL,
 	"password" varchar(20) NOT NULL,
-	" character" integer NOT NULL,
+	"character" integer NOT NULL,
 	CONSTRAINT users_pk PRIMARY KEY ("username")
 ) WITH (
   OIDS=false

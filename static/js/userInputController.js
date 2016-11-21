@@ -109,10 +109,15 @@ dnd.controller('inputController', function($scope, $sce) {
        if (success){
            console.log("Logged in successfully! $scope.loggedIn = true.");
            $scope.loggedIn = true;
+           $scope.$apply();
        } else {
-           console.log("Login failed. $scope.loggedIn = true anyways.")
+           console.log("Login failed. $scope.loggedIn = true anyways.");
        }
     });
+    
+    $scope.logout = function(){
+        $scope.loggedIn = false;  
+    };
 
     socket.on('connect', function() {
         console.log('connected');

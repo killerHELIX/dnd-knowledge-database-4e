@@ -10,11 +10,7 @@
     <meta name="author" content="">
 
     <title>Dungeons and Dragons 4th Edition Knowledge Database</title>
-    <link rel="icon"
-    type="image/png"
-    href="static/img/icon.png"
-
-    <!-- Bootstrap Core CSS -->
+    <link rel="icon" type="image/png" href="static/img/icon.png" <!-- Bootstrap Core CSS -->
     <link href="static/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
@@ -72,7 +68,7 @@
                     </li>
                     <li>
                         <a class="page-scroll" href="#modal" data-toggle="modal" data-target="#login" ng-show="!loggedIn">Login</a>
-                        <a class="page-scroll" ng-show="loggedIn" ng-bind="username"></a>
+                        <a class="page-scroll" ng-show="loggedIn" ng-bind="username" href="#modal" data-toggle="modal" data-target="#userInfo"></a>
                     </li>
                 </ul>
             </div>
@@ -101,12 +97,12 @@
         </div>
     </header>
 
-    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto"  ng-show="!statsEntered">
+    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="!statsEntered && !statsReady">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
                     <h2 class="section-heading">In order to gather the right information, we'll need some data from you.</h2>
-                    
+
                     <h1>Your character is a </h1>
 
                     <select class="selectpicker" style="width:auto" data-live-search="true" data-style="btn-primary" ng-model="selectedLevel">
@@ -124,36 +120,106 @@
                       <option ng-repeat="class in possibleClasses">{{ '{{class}}' }}</option>
                     </select>
 
-                    <a href = "#stats" id="go" class="btn btn-primary page-scroll" ng-click="getInfo()">Go</a>
+                    <a href="#stats" id="go" class="btn btn-primary page-scroll" ng-click="getBasic()">Go</a>
                 </div>
             </div>
         </div>
     </section>
-    
-    <section id="stats" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="statsEntered">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <h2 class="section-heading">Almost done.  All we need now are some stats to get things you're actually able to use.</h2>
-                
-                <a href = "#download" id="go" class="btn btn-primary page-scroll" ng-click="resetStats()">Back</a>
-                
-                <h1>You can distribute a standard array (15, 14, 13, 12, 10, 8) or enter any values you'd like.</h1>
-                
-                <div class="form-group" style="text-align: center; margin: auto">
-                    <input style="width: 25%; display: inline; margin: auto" type="input" class="form-control centeredInput" ng-model="str" placeholder="Strength"><br>
-                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="con" placeholder="Constitution"><br>
-                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="dex" placeholder="Dexterity"><br>
-                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="int" placeholder="Intelligence"><br>                    
-                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="wis" placeholder="Wisdom"><br>
-                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="cha" placeholder="Charisma"><br>
+
+    <section id="stats" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="statsEntered && !skillsEntered && !statsReady">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading">Almost done. All we need now are some stats to get things you're actually able to use.</h2>
+
+                    <a href="#download" id="go" class="btn btn-primary page-scroll" ng-click="resetStats()">Back</a>
+
+                    <h1>You can distribute a standard array (15, 14, 13, 12, 10, 8) or enter any values you'd like.</h1>
+
+                    <div class="form-group" style="text-align: center; margin: auto">
+                        <input style="width: 25%; display: inline; margin: auto" type="input" class="form-control centeredInput" ng-model="str" placeholder="Strength"><br>
+                        <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="con" placeholder="Constitution"><br>
+                        <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="dex" placeholder="Dexterity"><br>
+                        <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="int" placeholder="Intelligence"><br>
+                        <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="wis" placeholder="Wisdom"><br>
+                        <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="cha" placeholder="Charisma"><br>
+                    </div>
+
+                    <a href="#skills" id="go" class="btn btn-primary page-scroll" ng-click="getStats()">Go</a>
                 </div>
-                
-                <a href = "#stats" id="go" class="btn btn-primary page-scroll" ng-click="getInfo()">Go</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section id="skills" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="skillsEntered && !statsReady">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h2 class="section-heading">Last part. Select skills you've trained. </h2>
+
+                    <a href="#download" id="go" class="btn btn-primary page-scroll" ng-click="resetStats()">Back</a>
+                    
+                    <br><br>
+                    
+                    <div class="col-md-4 col-md-offset-4">
+                        <input type="checkbox" ng-model="acrobatics">
+                        <label>Acrobatics</label><br>
+                        
+                        <input type="checkbox" ng-model="arcana">
+                        <label>Arcana</label><br>
+                        
+                        <input type="checkbox" ng-model="athletics">
+                        <label>Athletics</label><br>
+                        
+                        <input type="checkbox" ng-model="bluff">
+                        <label>Bluff</label><br>
+                        
+                        <input type="checkbox" ng-model="diplomacy">
+                        <label>Diplomacy</label><br>
+                        
+                        <input type="checkbox" ng-model="dungeoneering">
+                        <label>Dungeoneering</label><br>
+                        
+                        <input type="checkbox" ng-model="endurance">
+                        <label>Endurance</label><br>
+                        
+                        <input type="checkbox" ng-model="heal">
+                        <label>Heal</label><br>
+                        
+                        <input type="checkbox" ng-model="history">
+                        <label>History</label><br>
+                        
+                        <input type="checkbox" ng-model="insight">
+                        <label>Insight</label><br>
+                        
+                        <input type="checkbox" ng-model="intimidate">
+                        <label>Intimidate</label><br>
+                        
+                        <input type="checkbox" ng-model="nature">
+                        <label>Nature</label><br>
+                        
+                        <input type="checkbox" ng-model="perception">
+                        <label>Perception</label><br>
+                        
+                        <input type="checkbox" ng-model="religion">
+                        <label>Religion</label><br>
+                        
+                        <input type="checkbox" ng-model="stealth">
+                        <label>Stealth</label><br>
+                        
+                        <input type="checkbox" ng-model="streetwise">
+                        <label>Streetwise</label><br>
+                        
+                        <input type="checkbox" ng-model="thievery">
+                        <label>Thievery</label><br>
+                        
+                        <a href="#stats" id="go" class="btn btn-primary page-scroll" ng-click="query()">Go</a>
+                        
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </section>
 
     <section id="features" class="features" ng-show='statsReady'>
         <div class="container">
@@ -232,6 +298,19 @@
         </div>
         <div class="overlay"></div>
     </div>
+    
+    <div class="cta modal fade" id="userInfo" style="width: 50%; margin: auto">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Login</h2>
+                <h4>Previous characters:</h4><br>
+                <h1>Level {{ '{{selectedLevel}}' }} {{ '{{selectedRace}}' }} {{ '{{selectedClass}}' }}</h1>
+                <a href="#features" id="go" class="btn btn-primary page-scroll" ng-click="query()" data-dismiss="modal">Go</a>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </div>    
 
     <section id="contact" class="contact bg-primary">
         <div class="container">

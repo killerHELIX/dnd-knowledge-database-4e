@@ -44,6 +44,24 @@ def getInfo(Level, Race, Class):
     'skills':Class['skills'], 'features':Class['features']}
     
     emit('updateClassInfo', newClass)
+    
+@socketio.on('login')
+def login(username, password):
+  query = "SELECT * FROM users WHERE username = %s AND password = %s;"
+  mog = cur.mogrify(query, (username, password))
+  print(mog)
+  
+  cur.execute(mog)
+  results = cur.fetchall()
+  
+  if len(results) is 0:
+    success = False;
+    emit('loginResult', success)
+  
+  else:
+    success = True;
+    emit('loginResult', success);
+  
 
 @socketio.on('connect')
 def makeConnection():

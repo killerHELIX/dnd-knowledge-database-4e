@@ -100,6 +100,9 @@ CREATE TABLE "feats" (
   OIDS=false
 );
 --------------------------------------------------------------------------------
+CREATE INDEX ON feats (class);
+CREATE INDEX ON feats (race);
+--------------------------------------------------------------------------------
 CREATE TABLE "users" (
 	"username" varchar(20) NOT NULL,
 	"password" varchar(20) NOT NULL,

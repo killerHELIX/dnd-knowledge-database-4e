@@ -60,6 +60,23 @@ def login(username, password):
   
   else:
     success = True;
+    
+    # get this user's characters, TODO
+    query = "SELECT * FROM character, users WHERE character.id = users.character;"
+    mog = cur.mogrify(query);
+    print(mog)
+    
+    cur.execute(mog)
+    characters = cur.fetchall();
+    
+    for character in characters:
+      newCharacter = {'id':character['id'], 'name':character['name'], 'level':character['level'], 'race':character['race'], 'class':character['class'], 'source':character['source'],
+      'str':character['str'], 'con':character['con'], 'dex':character['dex'], 'int':character['int'], 'wis':character['wis'], 'cha':character['cha'], 
+      'acrobatics':character['acrobatics'], 'arcana':character['arcana'], 'athletics':character['athletics'], 'bluff':character['bluff'], 'dungeoneering':character['dungeoneering'], 'endurance':character['endurance'], 'heal':character['heal'], 'intimidate':character['intimidate'], 'nature':character['nature'], 'perception':character['perception'], 'religion':character['religion'], 'stealth':character['stealth'],
+      'feats':character['feats'], 'god':character['god'], 'armor_proficiency':character['armor_proficiency'], 'weapon_proficiency':character['weapon_proficiency']}
+      
+      emit('characterData', newCharacter)
+    
     emit('loginResult', success);
   
 

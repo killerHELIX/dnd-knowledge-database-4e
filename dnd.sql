@@ -113,9 +113,9 @@ CREATE TABLE "character" (
 	"id" serial NOT NULL,
 	"name" TEXT NOT NULL,
 	"level" integer NOT NULL DEFAULT '1',
-	"race" TEXT NOT NULL UNIQUE,
-	"class" TEXT NOT NULL UNIQUE,
-	"source" TEXT NOT NULL UNIQUE,
+	"race" TEXT NOT NULL,
+	"class" TEXT NOT NULL,
+	"source" TEXT NOT NULL,
 	"str" integer NOT NULL DEFAULT 10,
 	"con" integer NOT NULL DEFAULT 10,
 	"dex" integer NOT NULL DEFAULT 10,
@@ -135,9 +135,9 @@ CREATE TABLE "character" (
 	"religion" BOOLEAN NOT NULL DEFAULT false,
 	"stealth" BOOLEAN NOT NULL DEFAULT false,
 	"feats" TEXT NOT NULL,
-	"god" TEXT NOT NULL,
-	"armor_proficiency" TEXT NOT NULL UNIQUE,
-	"weapon_proficiency" TEXT NOT NULL UNIQUE,
+	"god" TEXT NOT NULL DEFAULT 'none',
+	"armor_proficiency" TEXT NOT NULL,
+	"weapon_proficiency" TEXT NOT NULL,
 	CONSTRAINT character_pk PRIMARY KEY ("id")
 ) WITH (
   OIDS=false

@@ -61,17 +61,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#download">Basic Information</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#features">Details</a>
+                        <a class="page-scroll" href="#modal" data-toggle="modal" data-target="#register" ng-show="!loggedIn">Register</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#modal" data-toggle="modal" data-target="#login" ng-show="!loggedIn">Login</a>
+                    </li>
+                    <li>
                         <a class="page-scroll" ng-show="loggedIn" ng-bind="username" href="#modal" data-toggle="modal" data-target="#userInfo"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" ng-show="loggedIn" href="#page-top" ng-click="logout()">Logout</a>
+                        <a class="page-scroll" ng-show="loggedIn" href="#" ng-click="logout()">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -87,7 +86,7 @@
                     <div class="header-content">
                         <div class="header-content-inner">
                             <h1>Welcome to the D&D 4th Edition Knowledge Database. If you don't know where to start, you're in the right place.</h1>
-                            <a href="#download" class="btn btn-outline btn-xl page-scroll">Continue</a>
+                            <a href="#notLoggedIn" class="btn btn-outline btn-xl page-scroll">Continue</a>
                         </div>
                     </div>
                 </div>
@@ -99,8 +98,20 @@
             </div>
         </div>
     </header>
+    
+    <section id="notLoggedIn" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="!loggedIn">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    
+                    <h2 class="section-heading">You'll need to login first before you can begin.</h2>
+                    <a class="btn btn-primary page-scroll" href="#modal" data-toggle="modal" data-target="#login" ng-show="!loggedIn">Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="!statsEntered && !statsReady">
+    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="!statsEntered && !statsReady && loggedIn">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -129,7 +140,7 @@
         </div>
     </section>
 
-    <section id="stats" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="statsEntered && !skillsEntered && !statsReady">
+    <section id="stats" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="statsEntered && !skillsEntered && !statsReady && loggedIn">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -154,7 +165,7 @@
         </div>
     </section>
 
-    <section id="skills" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="skillsEntered && !statsReady">
+    <section id="skills" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="skillsEntered && !statsReady && loggedIn">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -224,7 +235,7 @@
         </div>
     </section>
 
-    <section id="features" class="features" ng-show='statsReady'>
+    <section id="features" class="features" ng-show='statsReady && loggedIn'>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -285,6 +296,23 @@
                 </table>
             </div>
     </section>
+    
+    <div class="cta modal fade" id="register" style="width: 50%; margin: auto">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Register</h2>
+                <h4>Registering allows you to save specific character information for later use!</h4><br>
+                <div class="form-group" style="text-align: center">
+                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="username" placeholder="Username">
+                    <input style="width: 25%; display: inline" type="password" class="form-control centeredInput" ng-model="password" placeholder="Password">
+                    <input type="button" class="btn btn-primary" ng-click="register()" value="Register">
+                    <h1 ng-bind="response"></h1>
+                </div>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </div>
 
     <div class="cta modal fade" id="login" style="width: 50%; margin: auto">
         <div class="modal-content">
@@ -306,10 +334,9 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title">Login</h2>
-                <h4>Previous characters:</h4><br>
-                <h1>Level {{ '{{selectedLevel}}' }} {{ '{{selectedRace}}' }} {{ '{{selectedClass}}' }}</h1>
-                <a href="#features" id="go" class="btn btn-primary page-scroll" ng-click="query()" data-dismiss="modal">Go</a>
+                <h2 class="modal-title">Character Info</h2>
+                <h1>Level {{ '{{character[0].level}}' }} {{ '{{character[0].race}}' }} {{ '{{character[0].name}}' }}</h1>
+                <a href="#features" id="go" class="btn btn-primary page-scroll" ng-click="loggedInQuery()" data-dismiss="modal">Go</a>
             </div>
         </div>
         <div class="overlay"></div>

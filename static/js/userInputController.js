@@ -143,16 +143,38 @@ dnd.controller('inputController', function($scope, $sce) {
         $scope.statsReady = false;
     };
     
+    $scope.resetCredentials = function(){
+        $scope.username = '';
+        $scope.password = '';
+    };
+    
     $scope.register = function(){
         console.log("Entered register on CONTROLLER.JS");
         if ($scope.username != null && $scope.password != null){
-            $scope.response = "Username and password aren't null, emitting to server!"
+            console.log($scope.username + " " + $scope.password);
             socket.emit('register', $scope.username, $scope.password);
         } else {
-            $scope.response = "Username or password not entered!"
+            console.log($scope.username);
+            console.log($scope.password);
+            $scope.registerResponse = "Username or password not entered!";
             console.log("Username or password are null.");
         }
     };
+    
+    socket.on('registerResult', function(success){
+       console.log('Entered registerResult on CONTROLLER.JS'); 
+       if (success){
+           console.log("GREEN: registration successful.");
+           $scope.registerResponse = "Registered!";
+           $('#register').modal('hide');
+           $scope.resetCredentials();
+           $scope.$apply();
+       } else {
+           console.log("RED: registration failed.");
+           $scope.registerResponse = "Registration failed.  This user is already registered!";
+           $scope.$apply();
+       }
+    });
     
     $scope.login = function(){
         console.log("Entered login on CONTROLLER.JS");
@@ -160,6 +182,7 @@ dnd.controller('inputController', function($scope, $sce) {
         if ($scope.username != null && $scope.password != null){
             socket.emit('login', $scope.username, $scope.password);
         } else {
+            $scope.loginResponse = "Username or password not entered!";
             console.log("Username or password are null.");
         }
         
@@ -175,6 +198,7 @@ dnd.controller('inputController', function($scope, $sce) {
        if (success){
            console.log("Logged in successfully! $scope.loggedIn = true.");
            $scope.loggedIn = true;
+           $('#login').modal('hide');
            $scope.$apply();
        } else {
            console.log("Login failed. $scope.loggedIn = true anyways.");
@@ -184,6 +208,7 @@ dnd.controller('inputController', function($scope, $sce) {
     $scope.logout = function(){
         $scope.loggedIn = false; 
         $scope.resetStats();
+        $scope.resetCredentials();
         
         $scope.selectedLevel = 'Level';
         $scope.selectedRace = 'Race';

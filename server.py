@@ -45,8 +45,41 @@ def getInfo(Level, Race, Class):
     
     emit('updateClassInfo', newClass)
     
+@socketio.on('register')
+def register(username, password):
+  print('Entered register on SERVER.PY')
+  
+  # check to see if already registered
+  query = "SELECT username FROM users where username = %s;"
+  mog = cur.mogrify(query, [username])
+  cur.execute(mog)
+  result = cur.fetchall()
+  print(result)
+  
+  if len(result) is 0:
+    
+    query = "INSERT INTO users (username, password, character) VALUES (%s, %s, 0);"
+    mog = cur.mogrify(query, (username, password))
+    print(mog)
+    
+    try:
+      cur.execute(mog)
+      success = True
+    except:
+      success = False
+      print("Insertion FAILED.")
+      
+    conn.commit()
+    emit('registerResult', success)
+  else:
+    print("User already exists!")
+    success = False
+    emit('registerResult', success)
+    
 @socketio.on('login')
 def login(username, password):
+  print("Entered login on SERVER.PY")
+  
   query = "SELECT * FROM users WHERE username = %s AND password = %s;"
   mog = cur.mogrify(query, (username, password))
   print(mog)

@@ -101,12 +101,17 @@ dnd.controller('inputController', function($scope, $sce) {
             $scope.perception = $scope.character[0].perception;
             $scope.religion = $scope.character[0].religion;
             $scope.stealth = $scope.character[0].stealth;
+            $scope.streetwise = $scope.character[0].streetwise;
+            $scope.thievery = $scope.character[0].thievery;
             $scope.statsReady = true;
             
             console.log("arcana:");
             console.log($scope.arcana);
             
-            socket.emit('getInfo', $scope.selectedLevel, $scope.selectedRace, $scope.selectedClass);
+            var stats = {'str':$scope.str, 'con':$scope.con, 'dex':$scope.dex, 'int':$scope.int, 'wis':$scope.wis, 'cha':$scope.cha};
+            var skills = {'acrobatics':$scope.acrobatics,'arcana':$scope.arcana,'athletics':$scope.athletics,'bluff':$scope.bluff,'dungeoneering':$scope.dungeoneering,
+            'endurance':$scope.endurance, 'heal':$scope.heal, 'intimidate':$scope.intimidate, 'nature':$scope.nature, 'perception':$scope.perception, 'religion':$scope.religion, 'stealth':$scope.stealth, 'streetwise':$scope.streetwise, 'thievery':$scope.thievery};
+            socket.emit('getInfo', $scope.selectedLevel, $scope.selectedRace, $scope.selectedClass, $scope.username, stats, skills);
             
             console.log($scope.statsEntered);
             console.log("Sent: ");
@@ -126,13 +131,18 @@ dnd.controller('inputController', function($scope, $sce) {
             $scope.raceInfo = [];
             $scope.classInfo = [];
             
-            socket.emit('getInfo', $scope.selectedLevel, $scope.selectedRace, $scope.selectedClass);
+            var stats = {'str':$scope.str, 'con':$scope.con, 'dex':$scope.dex, 'int':$scope.int, 'wis':$scope.wis, 'cha':$scope.cha};
+            var skills = {'acrobatics':$scope.acrobatics,'arcana':$scope.arcana,'athletics':$scope.athletics,'bluff':$scope.bluff,'dungeoneering':$scope.dungeoneering,
+            'endurance':$scope.endurance, 'heal':$scope.heal, 'intimidate':$scope.intimidate, 'nature':$scope.nature, 'perception':$scope.perception, 'religion':$scope.religion, 'stealth':$scope.stealth, 'streetwise':$scope.streetwise, 'thievery':$scope.thievery};
+            socket.emit('getInfo', $scope.selectedLevel, $scope.selectedRace, $scope.selectedClass, $scope.username, stats, skills);            
             
             console.log($scope.statsEntered);
             console.log("Sent: ");
             console.log($scope.selectedLevel);
             console.log($scope.selectedRace);
             console.log($scope.selectedClass);
+            console.log(stats);
+            console.log(skills);
         
         
     };
@@ -199,6 +209,8 @@ dnd.controller('inputController', function($scope, $sce) {
            console.log("Logged in successfully! $scope.loggedIn = true.");
            $scope.loggedIn = true;
            $('#login').modal('hide');
+           var button = document.getElementById("continue");
+           button.setAttribute("href", "#download");
            $scope.$apply();
        } else {
            console.log("Login failed. $scope.loggedIn = true anyways.");

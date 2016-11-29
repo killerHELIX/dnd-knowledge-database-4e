@@ -86,7 +86,7 @@
                     <div class="header-content">
                         <div class="header-content-inner">
                             <h1>Welcome to the D&D 4th Edition Knowledge Database. If you don't know where to start, you're in the right place.</h1>
-                            <a href="#notLoggedIn" class="btn btn-outline btn-xl page-scroll">Continue</a>
+                            <a id="continue" href="#notLoggedIn" class="btn btn-outline btn-xl page-scroll">Continue</a>
                         </div>
                     </div>
                 </div>
@@ -176,55 +176,55 @@
                     <br><br>
                     
                     <div class="col-md-4 col-md-offset-4">
-                        <input type="checkbox" ng-model="acrobatics">
+                        <input type="checkbox" ng-model="acrobatics" ng-init="acrobatics=false">
                         <label>Acrobatics</label><br>
                         
-                        <input type="checkbox" ng-model="arcana">
+                        <input type="checkbox" ng-model="arcana" ng-init="arcana=false">
                         <label>Arcana</label><br>
                         
-                        <input type="checkbox" ng-model="athletics">
+                        <input type="checkbox" ng-model="athletics" ng-init="athletics=false">
                         <label>Athletics</label><br>
                         
-                        <input type="checkbox" ng-model="bluff">
+                        <input type="checkbox" ng-model="bluff" ng-init="bluff=false">
                         <label>Bluff</label><br>
                         
-                        <input type="checkbox" ng-model="diplomacy">
+                        <input type="checkbox" ng-model="diplomacy" ng-init="diplomacy=false">
                         <label>Diplomacy</label><br>
                         
-                        <input type="checkbox" ng-model="dungeoneering">
+                        <input type="checkbox" ng-model="dungeoneering" ng-init="dungeoneering=false">
                         <label>Dungeoneering</label><br>
                         
-                        <input type="checkbox" ng-model="endurance">
+                        <input type="checkbox" ng-model="endurance" ng-init="endurance=false">
                         <label>Endurance</label><br>
                         
-                        <input type="checkbox" ng-model="heal">
+                        <input type="checkbox" ng-model="heal" ng-init="heal=false">
                         <label>Heal</label><br>
                         
-                        <input type="checkbox" ng-model="history">
+                        <input type="checkbox" ng-model="history" ng-init="history=false">
                         <label>History</label><br>
                         
-                        <input type="checkbox" ng-model="insight">
+                        <input type="checkbox" ng-model="insight" ng-init="insight=false">
                         <label>Insight</label><br>
                         
-                        <input type="checkbox" ng-model="intimidate">
+                        <input type="checkbox" ng-model="intimidate" ng-init="intimidate=false">
                         <label>Intimidate</label><br>
                         
-                        <input type="checkbox" ng-model="nature">
+                        <input type="checkbox" ng-model="nature" ng-init="nature=false">
                         <label>Nature</label><br>
                         
-                        <input type="checkbox" ng-model="perception">
+                        <input type="checkbox" ng-model="perception" ng-init="perception=false">
                         <label>Perception</label><br>
                         
-                        <input type="checkbox" ng-model="religion">
+                        <input type="checkbox" ng-model="religion" ng-init="religion=false">
                         <label>Religion</label><br>
                         
-                        <input type="checkbox" ng-model="stealth">
+                        <input type="checkbox" ng-model="stealth" ng-init="stealth=false">
                         <label>Stealth</label><br>
                         
-                        <input type="checkbox" ng-model="streetwise">
+                        <input type="checkbox" ng-model="streetwise" ng-init="streetwise=false">
                         <label>Streetwise</label><br>
                         
-                        <input type="checkbox" ng-model="thievery">
+                        <input type="checkbox" ng-model="thievery" ng-init="thievery=false">
                         <label>Thievery</label><br>
                         
                         <a href="#stats" id="go" class="btn btn-primary page-scroll" ng-click="query()">Go</a>
@@ -337,7 +337,8 @@
                 <button class="close" data-dismiss="modal">&times;</button>
                 <h2 class="modal-title">Character Info</h2>
                 <span ng-show="character.length == 0">
-                    <h1>No characters created yet.  Want to make one?</h1>
+                    <h1>No characters created yet.</h1>
+                    <a class="btn btn-primary page-scroll" href="#download">Make one</a>
                 </span>
                 <span  ng-show="character.length != 0">
                     <h1>{{ '{{character[0].name}}' }}: Level {{ '{{character[0].level}}' }} {{ '{{character[0].race}}' }} {{ '{{character[0].class}}' }}</h1>

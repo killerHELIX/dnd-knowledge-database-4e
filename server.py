@@ -25,7 +25,7 @@ conn = connectToDB()
 cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 
 @socketio.on('getInfo')
-def getInfo(Level, Race, Class):
+def getInfo(Level, Race, Class, username, stats, skills):
   print("Entered getInfo on SERVER.PY")
   
   # get class info
@@ -44,6 +44,28 @@ def getInfo(Level, Race, Class):
     'skills':Class['skills'], 'features':Class['features']}
     
     emit('updateClassInfo', newClass)
+    
+  # delete old user's character and add new one
+  
+  deletion = "UPDATE users SET character = NULL where username = %s;"
+  mog = cur.mogrify(deletion, [username])
+  print(mog)
+  try:
+    # cur.execute(mog)
+    print("Deletion successful.")
+  except:
+    print("Deletion FAILED. Rolling back...")
+    # conn.rollback();
+    print("Done.")
+  # conn.commit()
+  print("skills[arcana]")
+  print(skills['arcana'])
+  insertion = "INSERT INTO character VALUES(%s, %s, %s, %s, %s, 'source', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'feats', 'Corellon', 'hide', 'simple, military');"
+  mog = cur.mogrify(insertion, (username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
+   skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'],
+   skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']))
+    
+  print(mog)
     
 @socketio.on('register')
 def register(username, password):
@@ -67,7 +89,9 @@ def register(username, password):
       success = True
     except:
       success = False
-      print("Insertion FAILED.")
+      print("Insertion FAILED. Rolling back...")
+      conn.rollback()
+      print("Done.")
       
     conn.commit()
     emit('registerResult', success)

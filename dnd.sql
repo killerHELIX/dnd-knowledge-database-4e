@@ -134,6 +134,8 @@ CREATE TABLE "character" (
 	"perception" BOOLEAN NOT NULL DEFAULT false,
 	"religion" BOOLEAN NOT NULL DEFAULT false,
 	"stealth" BOOLEAN NOT NULL DEFAULT false,
+	"streetwise" BOOLEAN NOT NULL DEFAULT false,
+	"thievery" BOOLEAN NOT NULL DEFAULT false,
 	"feats" TEXT NOT NULL,
 	"god" TEXT NOT NULL DEFAULT 'none',
 	"armor_proficiency" TEXT NOT NULL,

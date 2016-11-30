@@ -80,7 +80,7 @@ def register(username, password):
   
   if len(result) is 0:
     
-    query = "INSERT INTO users (username, password, character) VALUES (%s, %s, 0);"
+    query = "INSERT INTO users (username, password, character) VALUES (%s, crypt(%s, gen_salt('bf')), 0);"
     mog = cur.mogrify(query, (username, password))
     print(mog)
     
@@ -104,7 +104,7 @@ def register(username, password):
 def login(username, password):
   print("Entered login on SERVER.PY")
   
-  query = "SELECT * FROM users WHERE username = %s AND password = %s;"
+  query = "SELECT * FROM users WHERE username = %s AND password = crypt(%s, password);"
   mog = cur.mogrify(query, (username, password))
   print(mog)
   

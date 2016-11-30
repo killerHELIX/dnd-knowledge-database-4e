@@ -3,7 +3,8 @@
 DROP DATABASE IF EXISTS dungeons;
 CREATE DATABASE dungeons;
 \c dungeons
---CREATE EXTENSION PGCRYPTO;
+DROP EXTENSION IF EXISTS pgcrypto;
+CREATE EXTENSION pgcrypto;
 --------------------------------------------------------------------------------
 CREATE TABLE "class" (
 	"name" TEXT NOT NULL,
@@ -102,7 +103,7 @@ CREATE TABLE "feats" (
 --------------------------------------------------------------------------------
 CREATE TABLE "users" (
 	"username" varchar(20) NOT NULL,
-	"password" varchar(20) NOT NULL,
+	"password" text NOT NULL,
 	"character" integer,
 	CONSTRAINT users_pk PRIMARY KEY ("username")
 ) WITH (

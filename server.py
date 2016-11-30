@@ -119,14 +119,15 @@ def login(username, password):
     success = True;
     
     # get this user's characters, TODO
-    query = "SELECT * FROM character, users WHERE character.id = users.character;"
-    mog = cur.mogrify(query);
+    query = "SELECT * FROM character, users WHERE users.character = character.id AND users.username = %s;"
+    mog = cur.mogrify(query , [username]);
     print(mog)
     
     cur.execute(mog)
-    characters = cur.fetchall();
+    characters = cur.fetchall()
     
     for character in characters:
+      print(character['id'])
       newCharacter = {'id':character['id'], 'name':character['name'], 'level':character['level'], 'race':character['race'], 'class':character['class'], 'source':character['source'],
       'str':character['str'], 'con':character['con'], 'dex':character['dex'], 'int':character['int'], 'wis':character['wis'], 'cha':character['cha'], 
       'acrobatics':character['acrobatics'], 'arcana':character['arcana'], 'athletics':character['athletics'], 'bluff':character['bluff'], 'dungeoneering':character['dungeoneering'], 'endurance':character['endurance'], 'heal':character['heal'], 'intimidate':character['intimidate'], 'nature':character['nature'], 'perception':character['perception'], 'religion':character['religion'], 'stealth':character['stealth'],

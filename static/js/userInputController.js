@@ -22,12 +22,12 @@ dnd.controller('inputController', function($scope, $sce) {
     $scope.features = "";
 
 
-    $scope.str = '10';
-    $scope.con = '10';
-    $scope.dex = '10';
-    $scope.int = '10';
-    $scope.wis = '10';
-    $scope.cha = '10';
+    $scope.str = '';
+    $scope.con = '';
+    $scope.dex = '';
+    $scope.int = '';
+    $scope.wis = '';
+    $scope.cha = '';
 
     
     socket.on('updateClassInfo', function(Class) {

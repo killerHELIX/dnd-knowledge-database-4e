@@ -61,9 +61,9 @@ def getInfo(Level, Race, Class, username, stats, skills):
   print("skills[arcana]")
   print(skills['arcana'])
   insertion = "INSERT INTO character VALUES(%s, %s, %s, %s, %s, 'source', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'feats', 'Corellon', 'hide', 'simple, military');"
-  mog = cur.mogrify(insertion, (username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
+  mog = cur.mogrify(insertion, ([username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
    skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'],
-   skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']))
+   skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']]))
     
   print(mog)
     

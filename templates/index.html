@@ -61,14 +61,16 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
-                        <a class="page-scroll" href="#download">Basic Information</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#features">Details</a>
+                        <a class="page-scroll" href="#modal" data-toggle="modal" data-target="#register" ng-show="!loggedIn">Register</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="#modal" data-toggle="modal" data-target="#login" ng-show="!loggedIn">Login</a>
-                        <a class="page-scroll" ng-show="loggedIn" ng-bind="username" href="#modal" data-toggle="modal" data-target="#userInfo"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll"  ng-show="loggedIn" ng-bind="username" href="#modal" data-toggle="modal" data-target="#userInfo"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" ng-show="loggedIn" href="#" ng-click="logout()">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -84,7 +86,7 @@
                     <div class="header-content">
                         <div class="header-content-inner">
                             <h1>Welcome to the D&D 4th Edition Knowledge Database. If you don't know where to start, you're in the right place.</h1>
-                            <a href="#download" class="btn btn-outline btn-xl page-scroll">Continue</a>
+                            <a id="continue" href="#notLoggedIn" class="btn btn-outline btn-xl page-scroll">Continue</a>
                         </div>
                     </div>
                 </div>
@@ -96,8 +98,20 @@
             </div>
         </div>
     </header>
+    
+    <section id="notLoggedIn" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="!loggedIn">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    
+                    <h2 class="section-heading">You'll need to login first before you can begin.</h2>
+                    <a class="btn btn-primary page-scroll" href="#modal" data-toggle="modal" data-target="#login" ng-show="!loggedIn">Login</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="!statsEntered && !statsReady">
+    <section id="download" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="!statsEntered && !statsReady && loggedIn">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -126,7 +140,7 @@
         </div>
     </section>
 
-    <section id="stats" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="statsEntered && !skillsEntered && !statsReady">
+    <section id="stats" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="statsEntered && !skillsEntered && !statsReady && loggedIn">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -151,7 +165,7 @@
         </div>
     </section>
 
-    <section id="skills" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="skillsEntered && !statsReady">
+    <section id="skills" class="download bg-primary text-center" style="background:url(static/img/tableTexture.jpg); background-size: 100% auto" ng-show="skillsEntered && !statsReady && loggedIn">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 col-md-offset-2">
@@ -162,55 +176,55 @@
                     <br><br>
                     
                     <div class="col-md-4 col-md-offset-4">
-                        <input type="checkbox" ng-model="acrobatics">
+                        <input type="checkbox" ng-model="acrobatics" ng-init="acrobatics=false">
                         <label>Acrobatics</label><br>
                         
-                        <input type="checkbox" ng-model="arcana">
+                        <input type="checkbox" ng-model="arcana" ng-init="arcana=false">
                         <label>Arcana</label><br>
                         
-                        <input type="checkbox" ng-model="athletics">
+                        <input type="checkbox" ng-model="athletics" ng-init="athletics=false">
                         <label>Athletics</label><br>
                         
-                        <input type="checkbox" ng-model="bluff">
+                        <input type="checkbox" ng-model="bluff" ng-init="bluff=false">
                         <label>Bluff</label><br>
                         
-                        <input type="checkbox" ng-model="diplomacy">
+                        <input type="checkbox" ng-model="diplomacy" ng-init="diplomacy=false">
                         <label>Diplomacy</label><br>
                         
-                        <input type="checkbox" ng-model="dungeoneering">
+                        <input type="checkbox" ng-model="dungeoneering" ng-init="dungeoneering=false">
                         <label>Dungeoneering</label><br>
                         
-                        <input type="checkbox" ng-model="endurance">
+                        <input type="checkbox" ng-model="endurance" ng-init="endurance=false">
                         <label>Endurance</label><br>
                         
-                        <input type="checkbox" ng-model="heal">
+                        <input type="checkbox" ng-model="heal" ng-init="heal=false">
                         <label>Heal</label><br>
                         
-                        <input type="checkbox" ng-model="history">
+                        <input type="checkbox" ng-model="history" ng-init="history=false">
                         <label>History</label><br>
                         
-                        <input type="checkbox" ng-model="insight">
+                        <input type="checkbox" ng-model="insight" ng-init="insight=false">
                         <label>Insight</label><br>
                         
-                        <input type="checkbox" ng-model="intimidate">
+                        <input type="checkbox" ng-model="intimidate" ng-init="intimidate=false">
                         <label>Intimidate</label><br>
                         
-                        <input type="checkbox" ng-model="nature">
+                        <input type="checkbox" ng-model="nature" ng-init="nature=false">
                         <label>Nature</label><br>
                         
-                        <input type="checkbox" ng-model="perception">
+                        <input type="checkbox" ng-model="perception" ng-init="perception=false">
                         <label>Perception</label><br>
                         
-                        <input type="checkbox" ng-model="religion">
+                        <input type="checkbox" ng-model="religion" ng-init="religion=false">
                         <label>Religion</label><br>
                         
-                        <input type="checkbox" ng-model="stealth">
+                        <input type="checkbox" ng-model="stealth" ng-init="stealth=false">
                         <label>Stealth</label><br>
                         
-                        <input type="checkbox" ng-model="streetwise">
+                        <input type="checkbox" ng-model="streetwise" ng-init="streetwise=false">
                         <label>Streetwise</label><br>
                         
-                        <input type="checkbox" ng-model="thievery">
+                        <input type="checkbox" ng-model="thievery" ng-init="thievery=false">
                         <label>Thievery</label><br>
                         
                         <a href="#stats" id="go" class="btn btn-primary page-scroll" ng-click="query()">Go</a>
@@ -221,18 +235,18 @@
         </div>
     </section>
 
-    <section id="features" class="features" ng-show='statsReady'>
+    <section id="features" class="features" ng-show='statsReady && loggedIn'>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-heading">
-                        <h2>D&D 4E Dynamic Table</h2>
+                        <h2>Class</h2>
                         <hr>
                     </div>
                 </div>
             </div>
 
-            <span>As a Level {{ '{{selectedLevel}}' }} {{ '{{selectedRace}}' }} {{ '{{selectedClass}}' }}, you receive the following starting stats:</span>
+            <span>As a Level {{ '{{selectedLevel}}' }} {{ '{{selectedClass}}' }}, you receive the following starting stats:</span>
             <div ng-class="ng-scope">
                 <table class="table table-hover">
                     <thead>
@@ -282,6 +296,67 @@
                 </table>
             </div>
     </section>
+    
+        <section id="races" class="features" ng-show='statsReady && loggedIn'>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading">
+                        <h2>Race</h2>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <span>As a {{ '{{selectedRace}}' }}, you receive the following starting stats:</span>
+            <div ng-class="ng-scope">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Race</th>
+                            <th>Skill</th>
+                            <th>Stats</th>
+                            <th>Size</th>
+                            <th>Speed</th>
+                            <th>Vision</th>
+                            <th>Language</th>
+                            <th>Traits</th>
+                            <th>Book</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td ng-bind="raceInfo[0].name"></td>
+                            <td ng-bind="raceInfo[0].skill"></td>
+                            <td ng-bind="raceInfo[0].stats"></td>
+                            <td ng-bind="raceInfo[0].size"></td>
+                            <td ng-bind="raceInfo[0].speed"></td>
+                            <td ng-bind="raceInfo[0].vision"></td>
+                            <td ng-bind="raceInfo[0].language"></td>
+                            <td ng-bind-html="traits"></td>
+                            <td ng-bind="raceInfo[0].book"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </section>
+    
+    <div class="cta modal fade" id="register" style="width: 50%; margin: auto">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button class="close" data-dismiss="modal">&times;</button>
+                <h2 class="modal-title">Register</h2>
+                <h4>Registering allows you to save specific character information for later use!</h4><br>
+                <div class="form-group" style="text-align: center">
+                    <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="username" placeholder="Username">
+                    <input style="width: 25%; display: inline" type="password" class="form-control centeredInput" ng-model="password" placeholder="Password">
+                    <input type="button" class="btn btn-primary" ng-click="register()" value="Register">
+                    <h4 ng-bind="registerResponse"></h4>
+                </div>
+            </div>
+        </div>
+        <div class="overlay"></div>
+    </div>
 
     <div class="cta modal fade" id="login" style="width: 50%; margin: auto">
         <div class="modal-content">
@@ -292,7 +367,8 @@
                 <div class="form-group" style="text-align: center">
                     <input style="width: 25%; display: inline" type="input" class="form-control centeredInput" ng-model="username" placeholder="Username">
                     <input style="width: 25%; display: inline" type="password" class="form-control centeredInput" ng-model="password" placeholder="Password">
-                    <input type="button" class="btn btn-primary" ng-click="login()" value="Login" data-dismiss="modal">
+                    <input type="button" class="btn btn-primary" ng-click="login()" value="Login">
+                    <h4 ng-bind="loginResponse"></h4>
                 </div>
             </div>
         </div>
@@ -303,10 +379,15 @@
         <div class="modal-content">
             <div class="modal-body">
                 <button class="close" data-dismiss="modal">&times;</button>
-                <h2 class="modal-title">Login</h2>
-                <h4>Previous characters:</h4><br>
-                <h1>Level {{ '{{selectedLevel}}' }} {{ '{{selectedRace}}' }} {{ '{{selectedClass}}' }}</h1>
-                <a href="#features" id="go" class="btn btn-primary page-scroll" ng-click="query()" data-dismiss="modal">Go</a>
+                <h2 class="modal-title">Character Info</h2>
+                <span ng-show="character.length == 0">
+                    <h1>No characters created yet.</h1>
+                    <a class="btn btn-primary page-scroll" href="#download">Make one</a>
+                </span>
+                <span  ng-show="character.length != 0">
+                    <h1>{{ '{{character[0].name}}' }}: Level {{ '{{character[0].level}}' }} {{ '{{character[0].race}}' }} {{ '{{character[0].class}}' }}</h1>
+                    <a href="#features" id="go" class="btn btn-primary page-scroll" ng-click="loggedInQuery()" data-dismiss="modal">Go</a>
+                </span>
             </div>
         </div>
         <div class="overlay"></div>

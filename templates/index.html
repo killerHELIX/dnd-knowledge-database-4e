@@ -240,13 +240,13 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="section-heading">
-                        <h2>D&D 4E Dynamic Table</h2>
+                        <h2>Class</h2>
                         <hr>
                     </div>
                 </div>
             </div>
 
-            <span>As a Level {{ '{{selectedLevel}}' }} {{ '{{selectedRace}}' }} {{ '{{selectedClass}}' }}, you receive the following starting stats:</span>
+            <span>As a Level {{ '{{selectedLevel}}' }} {{ '{{selectedClass}}' }}, you receive the following starting stats:</span>
             <div ng-class="ng-scope">
                 <table class="table table-hover">
                     <thead>
@@ -291,6 +291,50 @@
                     <tbody>
                         <tr>
                             <td ng-bind-html="features"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </section>
+    
+        <section id="races" class="features" ng-show='statsReady && loggedIn'>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-heading">
+                        <h2>Race</h2>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+
+            <span>As a {{ '{{selectedRace}}' }}, you receive the following starting stats:</span>
+            <div ng-class="ng-scope">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Race</th>
+                            <th>Skill</th>
+                            <th>Stats</th>
+                            <th>Size</th>
+                            <th>Speed</th>
+                            <th>Vision</th>
+                            <th>Language</th>
+                            <th>Traits</th>
+                            <th>Book</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td ng-bind="raceInfo[0].name"></td>
+                            <td ng-bind="raceInfo[0].skill"></td>
+                            <td ng-bind="raceInfo[0].stats"></td>
+                            <td ng-bind="raceInfo[0].size"></td>
+                            <td ng-bind="raceInfo[0].speed"></td>
+                            <td ng-bind="raceInfo[0].vision"></td>
+                            <td ng-bind="raceInfo[0].language"></td>
+                            <td ng-bind-html="traits"></td>
+                            <td ng-bind="raceInfo[0].book"></td>
                         </tr>
                     </tbody>
                 </table>

@@ -27,13 +27,44 @@ cur = conn.cursor(cursor_factory=psycopg2.extras.DictCursor)
 @socketio.on('getInfo')
 def getInfo(Level, Race, Class, username, stats, skills):
   print("Entered getInfo on SERVER.PY")
+  # get feats
+  query = "SELECT * FROM feats WHERE race = %s OR Class = %s;"
+  mog = cur.mogrify(query, (Race, Class))
+  print(mog)
+  try:
+    cur.execute(mog)
+  except:
+    print("Error:: cannot get feats")
+    
+  feats = cur.fetchall()
+  # get race info
+  query = "SELECT * FROM race WHERE name = %s;"
+  mog = cur.mogrify(query, [Race])
+  print(mog)
+  
+  try:
+    cur.execute(mog)
+  except:
+    print("Error: cannot get race info")
+  raceInfo = cur.fetchall()
+  
+  for race in raceInfo:
+    newRace = {'name':race['name'],'skill':race['skill'],'stats':race['stats'], 'size':race['size'],
+    'speed':race['speed'], 'vision':race['vision'], 'language':race['language'], 'traits':race['traits'], 
+    'book':race['book']}
+    
+    emit('updateRaceInfo', newRace);
   
   # get class info
   query = "SELECT * FROM class WHERE name = %s;"
   mog = cur.mogrify(query, [Class])
   print(mog)
   
-  cur.execute(mog)
+  try:
+    cur.execute(mog)
+  except:
+    print("Error: cannot get class info")
+    
   classInfo = cur.fetchall()
   print(classInfo)
   
@@ -61,9 +92,9 @@ def getInfo(Level, Race, Class, username, stats, skills):
   print("skills[arcana]")
   print(skills['arcana'])
   insertion = "INSERT INTO character VALUES(%s, %s, %s, %s, %s, 'source', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'feats', 'Corellon', 'hide', 'simple, military');"
-  mog = cur.mogrify(insertion, ([username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
+  mog = cur.mogrify(insertion, (username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
    skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'],
-   skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']]))
+   skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']))
     
   print(mog)
     

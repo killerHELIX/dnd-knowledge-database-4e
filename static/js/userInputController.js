@@ -19,8 +19,10 @@ dnd.controller('inputController', function($scope, $sce) {
     
     $scope.classInfo = [];
     $scope.raceInfo = [];
+    $scope.feats = [];
     $scope.features = "";
     $scope.traits = "";
+
 
 
     $scope.str = '';
@@ -29,9 +31,17 @@ dnd.controller('inputController', function($scope, $sce) {
     $scope.int = '';
     $scope.wis = '';
     $scope.cha = '';
+    
+    socket.on('updateFeats', function(Feat) {
+        console.log("Entering updateFeats in USERINPUTCONTROLLER.JS");
+        console.log(Feat);
+        $scope.feats.push(Feat);
+        $scope.$apply();
+        
+    })
 
     socket.on('updateRaceInfo', function(Race) {
-        console.log('Entering updateRaceInfo in USERINPUTCONTROLLER.JS')
+        console.log('Entering updateRaceInfo in USERINPUTCONTROLLER.JS');
         console.log(Race);
         $scope.raceInfo.push(Race);
         $scope.$apply();

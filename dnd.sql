@@ -68,7 +68,7 @@ CREATE TABLE "feats" (
 	"id" serial NOT NULL,
 	"name" TEXT NOT NULL,
 	"benefit" TEXT NOT NULL,
-	"special" TEXT,
+	"special" TEXT NOT NULL DEFAULT 'None',
 	"level" integer NOT NULL default 1,
 	"race" TEXT NOT NULL default '',
 	"class" TEXT NOT NULL DEFAULT '',

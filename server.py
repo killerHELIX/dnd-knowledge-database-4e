@@ -37,6 +37,16 @@ def getInfo(Level, Race, Class, username, stats, skills):
     print("Error:: cannot get feats")
     
   feats = cur.fetchall()
+  
+  for feat in feats:
+    newFeat = {"name":feat['name'], "benefit":feat['benefit'], "special":feat['special'], "level":feat['level'],
+	"race":feat['race'], "class":feat['class'], "source":feat['source'], "str":feat['str'], "con":feat['con'],
+	"dex":feat['dex'], "int":feat['int'], "wis":feat['wis'], "cha":feat['cha'], "acrobatics":feat['acrobatics'],
+	"arcana":feat['arcana'], "athletics":feat['athletics'], "bluff":feat['bluff'], "dungeoneering":feat['dungeoneering'],
+	"endurance":feat['endurance'], "heal":feat['heal'], "intimidate":feat['intimidate'], "nature":feat['nature'],
+	"perception":feat['perception'], "religion":feat['religion'], "stealth":feat['stealth'], "feat":feat['feat'],
+	"god":feat['god'], "armor_proficiency":feat['armor_proficiency'], "book":feat['book'], "nopres":feat['nopres']}
+	
   # get race info
   query = "SELECT * FROM race WHERE name = %s;"
   mog = cur.mogrify(query, [Race])
@@ -92,6 +102,8 @@ def getInfo(Level, Race, Class, username, stats, skills):
   print("skills[arcana]")
   print(skills['arcana'])
   insertion = "INSERT INTO character VALUES(%s, %s, %s, %s, %s, 'source', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'feats', 'Corellon', 'hide', 'simple, military');"
+  for i in range(len(skills)):
+    print(skills[i])
   mog = cur.mogrify(insertion, (username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
    skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'],
    skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']))

@@ -34,9 +34,10 @@ def getInfo(Level, Race, Class, username, stats, skills):
   try:
     cur.execute(mog)
   except:
-    print("Error:: cannot get feats")
+    print("Error: cannot get feats")
     
   feats = cur.fetchall()
+  print(feats)
   
   for feat in feats:
     newFeat = {"name":feat['name'], "benefit":feat['benefit'], "special":feat['special'], "level":feat['level'],
@@ -46,6 +47,8 @@ def getInfo(Level, Race, Class, username, stats, skills):
 	"endurance":feat['endurance'], "heal":feat['heal'], "intimidate":feat['intimidate'], "nature":feat['nature'],
 	"perception":feat['perception'], "religion":feat['religion'], "stealth":feat['stealth'], "feat":feat['feat'],
 	"god":feat['god'], "armor_proficiency":feat['armor_proficiency'], "book":feat['book'], "nopres":feat['nopres']}
+	
+    emit('updateFeats', newFeat)
 	
   # get race info
   query = "SELECT * FROM race WHERE name = %s;"
@@ -88,27 +91,27 @@ def getInfo(Level, Race, Class, username, stats, skills):
     
   # delete old user's character and add new one
   
-  deletion = "UPDATE users SET character = NULL where username = %s;"
-  mog = cur.mogrify(deletion, [username])
-  print(mog)
-  try:
-    # cur.execute(mog)
-    print("Deletion successful.")
-  except:
-    print("Deletion FAILED. Rolling back...")
-    # conn.rollback();
-    print("Done.")
-  # conn.commit()
-  print("skills[arcana]")
-  print(skills['arcana'])
-  insertion = "INSERT INTO character VALUES(%s, %s, %s, %s, %s, 'source', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'feats', 'Corellon', 'hide', 'simple, military');"
-  for i in range(len(skills)):
-    print(skills[i])
-  mog = cur.mogrify(insertion, (username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
-   skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'],
-   skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']))
+  # deletion = "UPDATE users SET character = NULL where username = %s;"
+  # mog = cur.mogrify(deletion, [username])
+  # print(mog)
+  # try:
+  #   # cur.execute(mog)
+  #   print("Deletion successful.")
+  # except:
+  #   print("Deletion FAILED. Rolling back...")
+  #   # conn.rollback();
+  #   print("Done.")
+  # # conn.commit()
+  # print("skills[arcana]")
+  # print(skills['arcana'])
+  # insertion = "INSERT INTO character VALUES(%s, %s, %s, %s, %s, 'source', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'feats', 'Corellon', 'hide', 'simple, military');"
+  # # for i in range(len(skills)):
+  # #   print(skills[i])
+  # mog = cur.mogrify(insertion, (username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
+  # skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'],
+  # skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']))
     
-  print(mog)
+  # print(mog)
     
 @socketio.on('register')
 def register(username, password):

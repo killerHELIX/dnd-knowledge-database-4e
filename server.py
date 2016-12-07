@@ -90,8 +90,8 @@ def getInfo(Level, Race, Class, username, stats, skills):
     emit('updateClassInfo', newClass)
     
   # create a new character with this info and update user.character to this new character
-  insertion = "INSERT INTO character (name, level, race, class, source) VALUES (%s, %s, %s, %s, %s);"
-  mog = cur.mogrify(insertion, (username, Level, Race, Class['name'], newClass['source']))
+  insertion = "INSERT INTO character (name, level, race, class, source, str, con, dex, int, wis, cha, acrobatics, arcana, athletics, bluff, dungeoneering, endurance, heal, intimidate, nature, perception, religion, stealth) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+  mog = cur.mogrify(insertion, (username, Level, Race, Class['name'], newClass['source'], stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'], skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'], skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth']))
   print(mog)
   
   # try:

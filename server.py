@@ -90,17 +90,26 @@ def getInfo(Level, Race, Class, username, stats, skills):
     emit('updateClassInfo', newClass)
     
   # create a new character with this info and update user.character to this new character
-  insertion = "INSERT INTO character (name, level, race, class, source, str, con, dex, int, wis, cha, acrobatics, arcana, athletics, bluff, dungeoneering, endurance, heal, intimidate, nature, perception, religion, stealth) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
-  mog = cur.mogrify(insertion, (username, Level, Race, Class['name'], newClass['source'], stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'], skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'], skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth']))
-  print(mog)
+  query = "SELECT * FROM character WHERE name = %s AND level = %s AND race = %s AND class = %s AND source = %s AND str = %s AND con = %s AND dex = %s AND int = %s AND wis = %s AND cha = %s AND acrobatics = %s AND arcana = %s AND athletics = %s AND bluff = %s AND dungeoneering =%s AND endurance = %s AND heal = %s AND intimidate = %s AND nature = %s AND perception = %s AND religion = %s AND stealth = %s AND streetwise = %s AND thievery = %s AND armor_proficiency = %s AND weapon_proficiency = %s"
+  mog = cur.mogrify(query, (username, Level, Race, Class['name'], newClass['source'], stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'], skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'], skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery'], newClass['armor'], newClass['weapon']))
+  cur.execute(mog)
+  existence = cur.fetchall()
+  print(existence)
   
-  # try:
-  #   cur.execute(mog)
-  # except:
-  #   print("insertion FAILED.  Rolling back...")
-  #   conn.rollback()
-  #   print("Done.")
-  # conn.commit()
+  if (len(existence) is 0):
+
+    insertion = "INSERT INTO character (name, level, race, class, source, str, con, dex, int, wis, cha, acrobatics, arcana, athletics, bluff, dungeoneering, endurance, heal, intimidate, nature, perception, religion, stealth, streetwise, thievery, feats, armor_proficiency, weapon_proficiency) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+    mog = cur.mogrify(insertion, (username, Level, Race, Class['name'], newClass['source'], stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'], skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'], skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery'], 'feats', newClass['armor'], newClass['weapon']))
+    print(mog)
+    
+    try:
+       cur.execute(mog)
+       print("insertion successful")
+    except:
+      print("insertion FAILED.  Rolling back...")
+      conn.rollback()
+      print("Done.")
+    conn.commit()
   
 @socketio.on('register')
 def register(username, password):
@@ -154,18 +163,19 @@ def login(username, password):
     success = True;
     
     # get this user's characters
-    query = "SELECT * FROM character, users WHERE users.character = character.id AND users.username = %s;"
-    mog = cur.mogrify(query , [username]);
+    query = "SELECT * FROM character, users WHERE character.name = %s and users.username = %s;"
+    mog = cur.mogrify(query, (username, username));
     print(mog)
     
     cur.execute(mog)
     characters = cur.fetchall()
+    print(characters)
     
     for character in characters:
       print(character['id'])
       newCharacter = {'id':character['id'], 'name':character['name'], 'level':character['level'], 'race':character['race'], 'class':character['class'], 'source':character['source'],
       'str':character['str'], 'con':character['con'], 'dex':character['dex'], 'int':character['int'], 'wis':character['wis'], 'cha':character['cha'], 
-      'acrobatics':character['acrobatics'], 'arcana':character['arcana'], 'athletics':character['athletics'], 'bluff':character['bluff'], 'dungeoneering':character['dungeoneering'], 'endurance':character['endurance'], 'heal':character['heal'], 'intimidate':character['intimidate'], 'nature':character['nature'], 'perception':character['perception'], 'religion':character['religion'], 'stealth':character['stealth'],
+      'acrobatics':character['acrobatics'], 'arcana':character['arcana'], 'athletics':character['athletics'], 'bluff':character['bluff'], 'dungeoneering':character['dungeoneering'], 'endurance':character['endurance'], 'heal':character['heal'], 'intimidate':character['intimidate'], 'nature':character['nature'], 'perception':character['perception'], 'religion':character['religion'], 'stealth':character['stealth'], 'streetwise':character['streetwise'], 'thievery':character['thievery'],
       'feats':character['feats'], 'god':character['god'], 'armor_proficiency':character['armor_proficiency'], 'weapon_proficiency':character['weapon_proficiency']}
       
       emit('characterData', newCharacter)

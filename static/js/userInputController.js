@@ -32,6 +32,21 @@ dnd.controller('inputController', function($scope, $sce) {
     $scope.wis = '';
     $scope.cha = '';
     
+    $scope.acrobatics = false;
+    $scope.arcana = false;
+    $scope.athletics = false;
+    $scope.bluff = false;
+    $scope.dungeoneering = false;
+    $scope.endurance = false;
+    $scope.heal = false;
+    $scope.intimidate = false;
+    $scope.nature = false;
+    $scope.perception = false;
+    $scope.religion = false;
+    $scope.stealth = false;
+    $scope.streetwise = false;
+    $scope.thievery = false;
+    
     socket.on('updateFeats', function(Feat) {
         console.log("Entering updateFeats in USERINPUTCONTROLLER.JS");
         console.log(Feat);
@@ -131,8 +146,8 @@ dnd.controller('inputController', function($scope, $sce) {
             console.log($scope.arcana);
             
             var stats = {'str':$scope.str, 'con':$scope.con, 'dex':$scope.dex, 'int':$scope.int, 'wis':$scope.wis, 'cha':$scope.cha};
-            var skills = {'acrobatics':$scope.acrobatics,'arcana':$scope.arcana,'athletics':$scope.athletics,'bluff':$scope.bluff,'dungeoneering':$scope.dungeoneering,
-            'endurance':$scope.endurance, 'heal':$scope.heal, 'intimidate':$scope.intimidate, 'nature':$scope.nature, 'perception':$scope.perception, 'religion':$scope.religion, 'stealth':$scope.stealth, 'streetwise':$scope.streetwise, 'thievery':$scope.thievery};
+            var skills = {'acrobatics':$scope.acrobatics, 'arcana':$scope.arcana, 'athletics':$scope.athletics, 'bluff':$scope.bluff, 'dungeoneering':$scope.dungeoneering, 'endurance':$scope.endurance, 'heal':$scope.heal, 'intimidate':$scope.intimidate, 'nature':$scope.nature, 'perception':$scope.perception, 'religion':$scope.religion, 'stealth':$scope.stealth, 'streetwise':$scope.streetwise, 'thievery':$scope.thievery};
+            console.log(skills);
             socket.emit('getInfo', $scope.selectedLevel, $scope.selectedRace, $scope.selectedClass, $scope.username, stats, skills);
             
             console.log($scope.statsEntered);
@@ -154,8 +169,8 @@ dnd.controller('inputController', function($scope, $sce) {
             $scope.classInfo = [];
             
             var stats = {'str':$scope.str, 'con':$scope.con, 'dex':$scope.dex, 'int':$scope.int, 'wis':$scope.wis, 'cha':$scope.cha};
-            var skills = {'acrobatics':$scope.acrobatics,'arcana':$scope.arcana,'athletics':$scope.athletics,'bluff':$scope.bluff,'dungeoneering':$scope.dungeoneering,
-            'endurance':$scope.endurance, 'heal':$scope.heal, 'intimidate':$scope.intimidate, 'nature':$scope.nature, 'perception':$scope.perception, 'religion':$scope.religion, 'stealth':$scope.stealth, 'streetwise':$scope.streetwise, 'thievery':$scope.thievery};
+            var skills = {'acrobatics':$scope.acrobatics, 'arcana':$scope.arcana, 'athletics':$scope.athletics, 'bluff':$scope.bluff, 'dungeoneering':$scope.dungeoneering, 'endurance':$scope.endurance, 'heal':$scope.heal, 'intimidate':$scope.intimidate, 'nature':$scope.nature, 'perception':$scope.perception, 'religion':$scope.religion, 'stealth':$scope.stealth, 'streetwise':$scope.streetwise, 'thievery':$scope.thievery};
+            console.log(skills);
             socket.emit('getInfo', $scope.selectedLevel, $scope.selectedRace, $scope.selectedClass, $scope.username, stats, skills);            
             
             console.log($scope.statsEntered);
@@ -240,6 +255,9 @@ dnd.controller('inputController', function($scope, $sce) {
     });
     
     $scope.logout = function(){
+        
+        document.getElementById("userinformation").style.color = "#ff0000";
+        
         $scope.loggedIn = false; 
         $scope.resetStats();
         $scope.resetCredentials();
@@ -247,6 +265,8 @@ dnd.controller('inputController', function($scope, $sce) {
         $scope.selectedLevel = 'Level';
         $scope.selectedRace = 'Race';
         $scope.selectedClass = 'Class';
+        
+        $scope.character = [];
         
         $scope.classInfo = [];
         $scope.raceInfo = [];

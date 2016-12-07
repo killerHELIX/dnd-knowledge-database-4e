@@ -67,7 +67,7 @@
                         <a class="page-scroll" href="#modal" data-toggle="modal" data-target="#login" ng-show="!loggedIn">Login</a>
                     </li>
                     <li>
-                        <a class="page-scroll"  ng-show="loggedIn" ng-bind="username" href="#modal" data-toggle="modal" data-target="#userInfo"></a>
+                        <a id="userinformation" class="page-scroll"  ng-show="loggedIn" ng-bind="username" href="#modal" data-toggle="modal" data-target="#userInfo"></a>
                     </li>
                     <li>
                         <a class="page-scroll" ng-show="loggedIn" href="#" ng-click="logout()">Logout</a>
@@ -435,7 +435,7 @@
                     <a class="btn btn-primary page-scroll" href="#download">Make one</a>
                 </span>
                 <span  ng-show="character.length != 0">
-                    <h1>{{ '{{character[0].name}}' }}: Level {{ '{{character[0].level}}' }} {{ '{{character[0].race}}' }} {{ '{{character[0].class}}' }}</h1>
+                    <h1>Level {{ '{{character[0].level}}' }} {{ '{{character[0].race}}' }} {{ '{{character[0].class}}' }}</h1>
                     <a href="#features" id="go" class="btn btn-primary page-scroll" ng-click="loggedInQuery()" data-dismiss="modal">Go</a>
                 </span>
             </div>

@@ -193,6 +193,8 @@ dnd.controller('inputController', function($scope, $sce) {
     $scope.resetCredentials = function(){
         $scope.username = '';
         $scope.password = '';
+        $scope.registerResponse = '';
+        $scope.loginResponse = '';
     };
     
     $scope.register = function(){
@@ -256,7 +258,7 @@ dnd.controller('inputController', function($scope, $sce) {
     
     $scope.logout = function(){
         
-        document.getElementById("userinformation").style.color = "#ff0000";
+        document.getElementById("userinformation").style.color = "rgba(34, 34, 34, 0.7)";
         
         $scope.loggedIn = false; 
         $scope.resetStats();

@@ -89,30 +89,19 @@ def getInfo(Level, Race, Class, username, stats, skills):
     
     emit('updateClassInfo', newClass)
     
-  # delete old user's character and add new one
+  # create a new character with this info and update user.character to this new character
+  insertion = "INSERT INTO character (name, level, race, class, source) VALUES (%s, %s, %s, %s, %s);"
+  mog = cur.mogrify(insertion, (username, Level, Race, Class['name'], newClass['source']))
+  print(mog)
   
-  # deletion = "UPDATE users SET character = NULL where username = %s;"
-  # mog = cur.mogrify(deletion, [username])
-  # print(mog)
   # try:
-  #   # cur.execute(mog)
-  #   print("Deletion successful.")
+  #   cur.execute(mog)
   # except:
-  #   print("Deletion FAILED. Rolling back...")
-  #   # conn.rollback();
+  #   print("insertion FAILED.  Rolling back...")
+  #   conn.rollback()
   #   print("Done.")
-  # # conn.commit()
-  # print("skills[arcana]")
-  # print(skills['arcana'])
-  # insertion = "INSERT INTO character VALUES(%s, %s, %s, %s, %s, 'source', %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, 'feats', 'Corellon', 'hide', 'simple, military');"
-  # # for i in range(len(skills)):
-  # #   print(skills[i])
-  # mog = cur.mogrify(insertion, (username, Level, Race, Class, stats['str'], stats['con'], stats['dex'], stats['int'], stats['wis'], stats['cha'],
-  # skills['acrobatics'], skills['arcana'], skills['athletics'], skills['bluff'], skills['dungeoneering'], skills['endurance'], skills['heal'],
-  # skills['intimidate'], skills['nature'], skills['perception'], skills['religion'], skills['stealth'], skills['streetwise'], skills['thievery']))
-    
-  # print(mog)
-    
+  # conn.commit()
+  
 @socketio.on('register')
 def register(username, password):
   print('Entered register on SERVER.PY')
@@ -164,7 +153,7 @@ def login(username, password):
   else:
     success = True;
     
-    # get this user's characters, TODO
+    # get this user's characters
     query = "SELECT * FROM character, users WHERE users.character = character.id AND users.username = %s;"
     mog = cur.mogrify(query , [username]);
     print(mog)

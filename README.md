@@ -5,8 +5,6 @@ By Ryan Harris and Tyler Moore
 
 INSTALLATION INSTRUCTIONS
 
-[RYAN, PLEASE PLACE WEBDEV SETUP INSTRUCTIONS HERE, WE NEED THEM FOR THE SPRINT. INCLUDE GIT CLONE LINE TO ENSURE THAT USER HAS THE SAME SET UP AS US.]
-
 # Clone from the repository:
     git clone git@github.com:killerHELIX/dnd-knowledge-database-4e.git
     
